@@ -20,6 +20,7 @@ function Home() {
 
     function handleIsVisible() {
         setIsVisible(true)
+        scrollToComponent(violet, { offset: 0, align: 'top', duration: 1200})
     }
 
     return (
@@ -29,7 +30,7 @@ function Home() {
 
                 <TopMenu />
 
-                <HomeForm scrollTo={() => scrollToComponent(violet, { offset: 0, align: 'top', duration: 1200})} contactIsVisible={handleIsVisible} />
+                <HomeForm contactIsVisible={handleIsVisible} />
 
                 <div className='contact-box' ref={(section) => { violet = section; }} style={isVisible === false ? {display: 'none'} : null}>
 

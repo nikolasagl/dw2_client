@@ -162,7 +162,6 @@ export default function HomeForm(props) {
             <button className='ready-btn' type='button' onClick={handleSubmit}>Pronto</button>} */}
             <button className='ready-btn' type='button' onClick={() => {
                 props.contactIsVisible()
-                props.scrollTo()
             }}>Pronto</button>
         </div>
 
