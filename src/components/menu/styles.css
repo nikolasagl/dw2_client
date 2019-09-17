@@ -5,6 +5,7 @@
     width: 100%;
     height: 80px;
     background: black;
+    opacity: 0.8;
 }
 
 .logo {
@@ -17,7 +18,6 @@
 }
 
 .menu {
-    position: relative;
     margin-right: 20px
 }
 
@@ -28,6 +28,7 @@
     background: none;
     color: white;
     padding: 10px;
+    font-size: 19px;
 }
 
 .menu button:hover {

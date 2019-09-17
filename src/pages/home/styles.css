@@ -1,13 +1,24 @@
 .container {
-    background-color: #ffd09e;
+    position: relative;
+    z-index: 1;
     height: 100%;
+    background-color: #ffd09e;
 }
 
-.home-box {
-    position: relative;
-    height: 450px;
-    width: 800px;
-    background: white;
-    border-radius: 10px;
-    margin: 100px auto;
+.container::before {
+    background-image: url("../../assets/bla.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: .5;
+}
+
+.contact-box {
+    height: 600px;
 }
