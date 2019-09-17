@@ -17,6 +17,12 @@ function Home() {
 
                 <TopMenu />
 
+                <div className='home-box'>
+
+                    
+
+                </div>
+
             </div>
 
         </div>

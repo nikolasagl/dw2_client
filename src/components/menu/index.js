@@ -15,9 +15,8 @@ export default function Menu() {
 
             <div className='menu'>
 
-                <button>dadadad</button>
-                <button>adasdasd</button>
-                <button>adasdas</button>
+                <button>Quem Somos</button>
+                <button>Como Funciona</button>
 
             </div>
 
