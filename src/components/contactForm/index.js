@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function ContactForm() {
+export default function ContactForm(props) {
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -10,6 +10,15 @@ export default function ContactForm() {
         <div className='contact-box'>
 
             <form onSubmit={handleSubmit}>
+
+                {/* <input value={} onChange={() => {}}></input>
+                <input value={} onChange={() => {}}></input>
+                <input value={} onChange={() => {}}></input>
+                <input value={} onChange={() => {}}></input>
+                <input value={} onChange={() => {}}></input>
+                <input value={} onChange={() => {}}></input>
+                <input value={} onChange={() => {}}></input>
+                <input value={} onChange={() => {}}></input> */}
 
             </form>
 

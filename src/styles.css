@@ -8,3 +8,9 @@
 html, body, #root {
     height: 100%;
 }
+
+@font-face {
+    font-family: "cute-jellyfish";
+    src: url("./assets/fonts/main/cute-jellyfish.woff") format("woff"),
+    url("./assets/fonts/main/cute-jellyfish.otf") format("opentype");
+}
