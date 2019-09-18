@@ -3,7 +3,7 @@ import React from 'react'
 import FormTab from '../../components/formTab/index'
 import OrderResume from '../../components/orderResume/index'
 
-import './styles.css'
+// import './styles.css'
 
 export default function HomeForm(props) {
 

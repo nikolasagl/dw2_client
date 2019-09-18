@@ -99,19 +99,21 @@ function Home() {
     }
 
     return (
-        <div className='container'>
+        <div className='content'>
 
-            <div className='content'>
+            <div className='container-fluid'>
 
-                <TopMenu />
+                <TopMenu className='row' />
 
                 <HomeForm
+                    className='row'
                     contactIsVisible={handleIsVisible}
                     handleStateChange={handleStateChange}
                     teste={handleIsVisible}
                     states={{ bandeja, massa, saborPrimario, saborSecundario, cobertura, confeito }} />
 
-                <ContactForm />
+                <ContactForm
+                    className='row' />
 
             </div>
 
