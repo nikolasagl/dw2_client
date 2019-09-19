@@ -7,16 +7,20 @@ import './styles.css'
 export default function Menu() {
 
     return (
-        <div className='menu-container'>
+        <div className='container menu-container'>
 
-            <div className='logo'>
-                <img src={logo} alt='logo' />
-            </div>
+            <div className='row'>
 
-            <div className='menu'>
+                <div className='col-sm logo'>
+                    <img src={logo} alt='logo' />
+                </div>
 
-                <button>Quem Somos</button>
-                <button>Como Funciona</button>
+                <div className='col-sm menu'>
+
+                    <button>Quem Somos</button>
+                    <button>Como Funciona</button>
+
+                </div>
 
             </div>
 
