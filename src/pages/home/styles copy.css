@@ -92,67 +92,24 @@
 .card-footer {
     background: transparent !important;
     border: 0 !important;
-}
+} 
 
-nav {
-    display: flex !important;
-    justify-content: center !important;
-    margin-bottom: 25px !important;
-}
-
-nav a {
-    color: black !important;
-    border-radius: 5px !important;
-    margin-left: 3px !important;
-    margin-right: 3px !important;
-}
-
-nav a:hover {
-    transform: translateY(-10px) !important;
-    transition: all 0.2s !important;
-    border: 1px solid black !important;
-}
-
-nav a.active{
-    box-shadow: 0px 3px 3px 2px rgba(0, 0, 0, 0.12) !important;
-    background: -webkit-linear-gradient(rgb(255, 188, 63), rgb(255, 146, 44)) !important;
-    border: 1px solid black !important;
-    color: white !important;
-}
-
-.select {
-    margin: 0 auto !important;
-    max-width: 700px !important;
-    border: 1px solid black !important;
-    border-radius: 0 !important;
-}
-
-.select select:focus {
-    outline: 0 !important;
-}
-
-.order-resume {
-    margin: 0 auto;
-    max-width: 800px;
-    height: 450px;
-    border-radius: 10px;
-    opacity: 0.9;
-}
-
-.resume-cell {
+.nav-btn {
+    margin-top: 5px;
+    background: -webkit-linear-gradient(rgb(255, 188, 63), rgb(255, 146, 44));
+    color: black;
     border: 1px solid black;
-    border-radius: 15px;
+    border-radius: 10px !important;
     box-shadow: 0px 3px 3px 2px rgba(0, 0, 0, 0.12);
-    background: white;
-    margin: 5px;
-    padding: 10px;
-    text-align: left;
 }
 
-.resume-cell p {
-    font-size: 20px;
+.nav-btn:hover {
+    transform: translateY(-10px);
+    transition: all 0.2s;
+    background: #ff8400;
+    color: white;
 }
 
-.resume-cell p em {
-    font-size: 17px;
+.nav-btn.active {
+    background: -webkit-linear-gradient(rgb(255, 188, 63), rgb(255, 146, 44));
 }
