@@ -1,7 +1,6 @@
 .container {
     position: relative;
     z-index: 1;
-    height: 100%;
     background-color: #ffd09e;
 }
 
@@ -17,8 +16,4 @@
     left: 0;
     right: 0;
     opacity: .5;
-}
-
-.contact-box {
-    height: 600px;
 }
