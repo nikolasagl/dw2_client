@@ -3,10 +3,11 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { FaWhatsapp, FaInstagram, FaFacebookF } from 'react-icons/fa'
 
+import logo from '../../assets/logo.png'
 
 import './styles.css'
 
-export default function Header() {
+export default function Header(props) {
 
     return (
         <Row className='header'>
@@ -18,8 +19,8 @@ export default function Header() {
                     <a href='' target="_blank"><FaWhatsapp /></a>
                     <a href='https://instagram.com' target="_blank"><FaInstagram /></a>
                     <a href='https://facebook.com' target="_blank"><FaFacebookF /></a>
-                    <button onClick={handleShowModalQuemSomos}>Quem Somos</button>
-                    <button onClick={handleShowModalComoFunciona}>Como Funciona</button>
+                    <button onClick={props.handleShowModalQuemSomos}>Quem Somos</button>
+                    <button onClick={props.handleShowModalComoFunciona}>Como Funciona</button>
                 </div>
             </Col>
         </Row>

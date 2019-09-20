@@ -10,10 +10,9 @@ import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
 import Form from 'react-bootstrap/Form'
 
-import logo from '../../assets/logo.png'
-
 import ModalQuemSomos from '../../components/modal/modalQuemSomos'
 import ModalComoFunciona from '../../components/modal/modalComoFunciona'
+import Header from '../../components/header'
 
 import './styles.css'
 
@@ -58,20 +57,7 @@ function Home() {
                 <ModalQuemSomos isVisible={modalQuemSomos} handleClose={handleCloseModalQuemSomos} />
                 <ModalComoFunciona isVisible={modalComoFunciona} handleClose={handleCloseModalComoFunciona} />
 
-                <Row className='header'>
-                    <Col className='logo' sm={true}>
-                        <img src={logo} alt='logo' />
-                    </Col>
-                    <Col>
-                        <div className='menu'>
-                            <a href='' target="_blank"><FaWhatsapp /></a>
-                            <a href='https://instagram.com' target="_blank"><FaInstagram /></a>
-                            <a href='https://facebook.com' target="_blank"><FaFacebookF /></a>
-                            <button onClick={handleShowModalQuemSomos}>Quem Somos</button>
-                            <button onClick={handleShowModalComoFunciona}>Como Funciona</button>
-                        </div>
-                    </Col>
-                </Row>
+                <Header handleShowModalQuemSomos={handleShowModalQuemSomos} handleShowModalComoFunciona={handleShowModalComoFunciona} />
 
                 <Row className='content'>
                     <Card className='card-content'>
