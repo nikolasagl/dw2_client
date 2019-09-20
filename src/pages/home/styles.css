@@ -1,7 +1,9 @@
 .main-container {
+    min-height: 930px !important;
     position: relative;
     z-index: 1;
-    background-color: #ffd09e;
+    background-color:  rgba(254, 223, 255, 0.377);
+    border-bottom: 1px solid black;
 }
 
 .main-container::before {
@@ -51,15 +53,33 @@
 
 .menu button:hover {
     cursor: pointer;
-    color: orange
+    color: rgba(255, 0, 200, 0.719)
 }
 
 .menu button:focus {
     outline: 0;
 }
 
+.menu a {
+    margin-right: 10px;
+    border: 0px;
+    border-radius: 4px;
+    background: none;
+    color: white;
+    padding: 10px;
+    font-size: 19px;
+}
+
+.menu a:hover {
+    cursor: pointer;
+    color: rgba(255, 0, 200, 0.719)
+}
+
+.menu a:focus {
+    outline: 0;
+}
+
 .content {
-    margin-bottom: 25px;
     justify-content: center;
 }
 
@@ -79,7 +99,7 @@
 
 .card-header  p {
     font-size: 6vw;
-    background: -webkit-linear-gradient(rgb(255, 181, 42), rgb(248, 72, 2));
+    background: -webkit-linear-gradient(rgba(255, 191, 252, 0.76), rgba(253, 47, 236, 0.856));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     -webkit-text-stroke: 1.5px;
@@ -115,7 +135,7 @@ nav a:hover {
 
 nav a.active{
     box-shadow: 0px 3px 3px 2px rgba(0, 0, 0, 0.12) !important;
-    background: -webkit-linear-gradient(rgb(255, 188, 63), rgb(255, 146, 44)) !important;
+    background: -webkit-linear-gradient(rgb(255, 184, 246), rgb(255, 33, 244)) !important;
     border: 1px solid black !important;
     color: white !important;
 }
@@ -141,18 +161,114 @@ nav a.active{
 
 .resume-cell {
     border: 1px solid black;
-    border-radius: 15px;
     box-shadow: 0px 3px 3px 2px rgba(0, 0, 0, 0.12);
     background: white;
+    /* background: -webkit-linear-gradient(white,rgb(214, 214, 214)) !important; */
     margin: 5px;
-    padding: 10px;
+    padding-left: 10px;
     text-align: left;
 }
 
+.resume-cell .icon {
+    margin-top: 10px;
+    margin-right: 5px;
+    float: right;
+}
+
 .resume-cell p {
+    margin-top: 10px;
     font-size: 20px;
 }
 
 .resume-cell p em {
     font-size: 17px;
+}
+
+.contact-container {
+    background: linear-gradient(transparent, rgba(248, 135, 252, 0.377), rgba(248, 53, 255, 0.377));
+    padding-bottom: 50px !important;
+}
+
+.contact-card {
+    box-shadow: 0px 8px 4px 2px rgba(0, 0, 0, 0.12) !important;
+    min-height: 700px !important;
+    padding: 30px;
+    margin: 0 auto;
+    max-width: 800px !important;
+    margin-top: 50px !important;
+    border-radius: 10px !important;
+}
+
+.contact-header {
+    text-align: center;
+}
+
+.contact-header p {
+    font-size: 40px;
+    background: -webkit-linear-gradient(rgba(255, 191, 252, 0.76), rgba(253, 47, 236, 0.856));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1.5px;
+}
+
+.contact-form {
+    margin: 10px 50px; 
+}
+
+.contact-footer {
+    text-align: center;
+}
+
+.form-row {
+    margin-bottom: 40px;
+}
+
+.label {
+    color: rgb(185, 185, 185);
+}
+
+.text-input {
+    width: 100%;
+    border: 0 !important;
+    border-bottom: 1px solid rgb(196, 195, 195) !important;
+}
+
+.text-input:focus {
+    border-bottom: 1px solid rgb(255, 0, 221) !important;
+    -webkit-animation-name: example;
+    -webkit-animation-duration: 1.5s;
+    outline: 0;
+}
+
+.text-input:focus + .label {
+    color: black;
+    transform: translateY(-60px);
+    transition: all 0.2s;
+}
+
+@keyframes example {
+    from {border-bottom: 1px solid rgb(255, 145, 0);}
+    to {border-bottom: 1px solid rgb(255, 0, 221);}
+}
+
+.submit {
+    min-width: 200px;
+    padding: 10px;
+    box-shadow: 0px 4px 2px 1px rgba(0, 0, 0, 0.12) !important;
+    background: -webkit-linear-gradient(rgb(255, 184, 246), rgb(255, 33, 244)) !important;
+    border: 1px solid rgb(0, 0, 0) !important;
+    color: white !important;
+    border-radius: 5px !important;
+    outline: 0 !important;
+}
+
+.submit:hover {
+    background: rgb(253, 107, 246) !important;
+    cursor: pointer !important;
+}
+
+.submit:active {
+    background: rgb(214, 20, 204) !important;
+    box-shadow: 0 2px 0 0 #666 !important;
+    transform: translateY(4px) !important;
 }

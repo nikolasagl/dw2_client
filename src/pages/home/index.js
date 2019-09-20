@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 
+import { FaAngleDown, FaAngleUp, FaWhatsapp, FaInstagram, FaFacebookF } from 'react-icons/fa'
+
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -7,10 +9,11 @@ import Card from 'react-bootstrap/Card'
 import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
 import Form from 'react-bootstrap/Form'
-import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
 
 import logo from '../../assets/logo.png'
+
+import ModalQuemSomos from '../../components/modal/modalQuemSomos'
+import ModalComoFunciona from '../../components/modal/modalComoFunciona'
 
 import './styles.css'
 
@@ -18,59 +21,42 @@ function Home() {
 
     const [key, setKey] = useState('bandeja');
 
-    const [bandeja, setBandeja] = useState()
-    const [massa, setMassa] = useState()
-    const [sabor1, setSabor1] = useState()
-    const [sabor2, setSabor2] = useState()
-    const [cobertura, setCobertura] = useState()
-    const [confeito, setConfeito] = useState()
+    const [bandeja, setBandeja] = useState('')
+    const [massa, setMassa] = useState('')
+    const [sabor1, setSabor1] = useState('')
+    const [sabor2, setSabor2] = useState('')
+    const [cobertura, setCobertura] = useState('')
+    const [confeito, setConfeito] = useState('')
 
-    const [modal1, setModal1] = useState(false);
+    const [nome, setNome] = useState('')
+    const [endereco, setEndereco] = useState('')
+    const [numero, setNumero] = useState('')
+    const [bairro, setBairro] = useState('')
+    const [telefone, setTelefone] = useState('')
 
-    const handleCloseModal1 = () => setModal1(false);
-    const handleShowModal1 = () => setModal1(true);
+    const [modalComoFunciona, setModalComoFunciona] = useState(true);
+    const [modalQuemSomos, setModalQuemSomos] = useState(false);
 
-    const [modal2, setModal2] = useState(true);
+    const [displayBandeja, setDisplayBandeja] = useState(false);
+    const [displayMassa, setDisplayMassa] = useState(false);
+    const [displaySabor1, setDisplaySabor1] = useState(false);
+    const [displaySabor2, setDisplaySabor2] = useState(false);
+    const [displayCobertura, setDisplayCobertura] = useState(false);
+    const [displayConfeito, setDisplayConfeito] = useState(false);
 
-    const handleCloseModal2 = () => setModal2(false);
-    const handleShowModal2 = () => setModal2(true);
+    const handleCloseModalComoFunciona = () => setModalComoFunciona(false);
+    const handleShowModalComoFunciona = () => setModalComoFunciona(true);
+
+    const handleCloseModalQuemSomos = () => setModalQuemSomos(false);
+    const handleShowModalQuemSomos = () => setModalQuemSomos(true);
 
     return (
         <div>
 
             <Container className='main-container' fluid={true}>
-
-                <Modal show={modal1} onHide={handleCloseModal1}>
-
-                    <Modal.Header closeButton>
-                        <Modal.Title>Modal heading</Modal.Title>
-                    </Modal.Header>
-
-                    <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleCloseModal1}>
-                            Close
-                    </Button>
-                    </Modal.Footer>
-
-                </Modal>
-
-                <Modal show={modal2} onHide={handleCloseModal2}>
-
-                    <Modal.Header closeButton>
-                        <Modal.Title>Modal heading</Modal.Title>
-                    </Modal.Header>
-
-                    <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleCloseModal2}>
-                            Close
-                    </Button>
-                    </Modal.Footer>
-
-                </Modal>
+                
+                <ModalQuemSomos isVisible={modalQuemSomos} handleClose={handleCloseModalQuemSomos} />
+                <ModalComoFunciona isVisible={modalComoFunciona} handleClose={handleCloseModalComoFunciona} />
 
                 <Row className='header'>
                     <Col className='logo' sm={true}>
@@ -78,8 +64,11 @@ function Home() {
                     </Col>
                     <Col>
                         <div className='menu'>
-                            <button onClick={handleShowModal1}>Quem Somos</button>
-                            <button onClick={handleShowModal2}>Como Funciona</button>
+                            <a href='' target="_blank"><FaWhatsapp /></a>
+                            <a href='https://instagram.com' target="_blank"><FaInstagram /></a>
+                            <a href='https://facebook.com' target="_blank"><FaFacebookF /></a>
+                            <button onClick={handleShowModalQuemSomos}>Quem Somos</button>
+                            <button onClick={handleShowModalComoFunciona}>Como Funciona</button>
                         </div>
                     </Col>
                 </Row>
@@ -205,12 +194,37 @@ function Home() {
 
                         <Card.Footer className='card-footer'>
                             <div className='order-resume'>
-                                <div className='resume-cell'><p>Bandeja: <em>{bandeja}</em></p></div>
-                                <div className='resume-cell'><p>Massa: <em>{massa}</em></p></div>
-                                <div className='resume-cell'><p>Sabor Primario: <em>{sabor1}</em></p></div>
-                                <div className='resume-cell'><p>Sabor Secundario: <em>{sabor2}</em></p></div>
-                                <div className='resume-cell'><p>Cobertura: <em>{cobertura}</em></p></div>
-                                <div className='resume-cell'><p>Confeitos: <em>{confeito}</em></p></div>
+
+                                <div onClick={() => bandeja !== '' ? setDisplayBandeja(!displayBandeja) : {}} className='resume-cell'>
+                                    <p>Bandeja: <em>{bandeja}</em>{bandeja !== '' ? displayBandeja === false ? <FaAngleDown className='icon' /> : <FaAngleUp className='icon' /> : null}</p>
+                                    <span style={displayBandeja === false || bandeja === '' ? {display: 'none'} : null}>Descricao bandeja</span>
+                                </div>
+
+                                <div onClick={() => massa !== '' ? setDisplayMassa(!displayMassa) : {}} className='resume-cell'>
+                                    <p>Massa: <em>{massa}</em>{massa !== '' ? displayMassa === false ? <FaAngleDown className='icon' /> : <FaAngleUp className='icon' /> : null}</p>                                    
+                                    <span style={displayMassa === false || massa === '' ? {display: 'none'} : null}>Descricao massa</span>
+                                </div>
+
+                                <div onClick={() => sabor1 !== '' ? setDisplaySabor1(!displaySabor1) : {}} className='resume-cell'>
+                                    <p>Sabor Primario: <em>{sabor1}</em>{sabor1 !== '' ? displaySabor1 === false ? <FaAngleDown className='icon' /> : <FaAngleUp className='icon' /> : null}</p>                                                                        
+                                    <span style={displaySabor1 === false || sabor1 === '' ? {display: 'none'} : null}>Descricao sabor 1</span>
+                                </div>
+
+                                <div onClick={() => sabor2 !== '' ? setDisplaySabor2(!displaySabor2) : {}} className='resume-cell'>
+                                    <p>Sabor Primario: <em>{sabor2}</em>{sabor2 !== '' ? displaySabor2 === false ? <FaAngleDown className='icon' /> : <FaAngleUp className='icon' /> : null}</p>                                                                        
+                                    <span style={displaySabor2 === false || sabor2 === '' ? {display: 'none'} : null}>Descricao sabor 2</span>
+                                </div>
+
+                                <div onClick={() => cobertura !== '' ? setDisplayCobertura(!displayCobertura) : {}} className='resume-cell'>
+                                    <p>Cobertura: <em>{cobertura}</em>{cobertura !== '' ? displayCobertura === false ? <FaAngleDown className='icon' /> : <FaAngleUp className='icon' /> : null}</p>                                                                                                        
+                                    <span style={displayCobertura === false || cobertura === '' ? {display: 'none'} : null}>Descricao cobertura</span>
+                                </div>
+
+                                <div onClick={() => confeito !== '' ? setDisplayConfeito(!displayConfeito) : {}} className='resume-cell'>
+                                    <p>Confeitos: <em>{confeito}</em>{confeito !== '' ? displayConfeito === false ? <FaAngleDown className='icon' /> : <FaAngleUp className='icon' /> : null}</p>                                                                                                                                            
+                                    <span style={displayConfeito === false || confeito === '' ? {display: 'none'} : null}>Descricao confeitos</span>
+                                </div>
+
                             </div>
                         </Card.Footer>
                     </Card>
@@ -218,8 +232,59 @@ function Home() {
 
             </Container>
 
-            <Container>
-                <h1>asdubasoidbasd</h1>
+            <Container bsPrefix='contact-container'>
+
+                <Card className='contact-card'>
+                    <Card.Header className='contact-header'>
+                        <p>Finalize seu Pedido</p>
+                    </Card.Header>
+
+                    <Card.Body>
+
+                        <Form className='contact-form'>
+
+                            <Form.Row className='form-row'>
+                                <Form.Group className='col-md-12'>
+                                    <input className='text-input' type='text' value={nome} onChange={(e) => setNome(e.target.value)}></input>
+                                    <Form.Label className='label'>NOME</Form.Label>
+                                </Form.Group>
+                            </Form.Row>
+
+                            <Form.Row className='form-row'>
+                                <Form.Group className='col-md-10'>
+                                    <input className='text-input' type='text' value={endereco} onChange={(e) => setEndereco(e.target.value)}></input>
+                                    <Form.Label className='label'>ENDEREÇO DE ENTREGA</Form.Label>
+                                </Form.Group>
+
+                                <Form.Group className='col-md-2'>
+                                    <input className='text-input' type='text' value={numero} onChange={(e) => setNumero(e.target.value)}></input>
+                                    <Form.Label className='label'>NUMERO</Form.Label>
+                                </Form.Group>
+                            </Form.Row>
+
+                            <Form.Row className='form-row'>
+                                <Form.Group className='col-md-12'>
+                                    <input className='text-input' type='text' value={bairro} onChange={(e) => setBairro(e.target.telefone)}></input>
+                                    <Form.Label className='label'>BAIRRO</Form.Label>
+                                </Form.Group>
+                            </Form.Row>
+
+                            <Form.Row className='form-row'>
+                                <Form.Group className='col-md-12'>
+                                    <input className='text-input' type='text' value={telefone} onChange={(e) => setTelefone(e.target.telefone)}></input>
+                                    <Form.Label className='label'>TELEFONE</Form.Label>
+                                </Form.Group>
+                            </Form.Row>
+
+                        </Form>
+
+                    </Card.Body>
+
+                    <Card.Footer className='contact-footer'>
+                        <button className='submit' type='submit' onClick={() => {}}>Confirmar Pedido</button>
+                    </Card.Footer>
+                </Card>
+
             </Container>
         </div>
 
