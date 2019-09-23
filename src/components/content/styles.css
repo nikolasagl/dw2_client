@@ -1,0 +1,37 @@
+.content {
+    justify-content: center;
+    font-family: 'Hammersmith One', sans-serif;
+}
+
+.card-content {
+    text-align: center;
+    background: transparent !important;
+    border: 0 !important;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.card-header {
+    background: transparent !important;
+    border: 0 !important;
+    font-family: 'Princess Sofia', cursive !important;
+} 
+
+.card-header  p {
+    margin-bottom: 0 !important;
+    font-size: 9vw;
+    background: -webkit-linear-gradient(rgba(255, 191, 252, 0.76), rgba(253, 47, 236, 0.856));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 0.5px;
+}
+
+.card-body {
+    background: transparent !important;
+    padding: 0 !important;
+}
+
+.card-footer {
+    background: transparent !important;
+    border: 0 !important;
+}
