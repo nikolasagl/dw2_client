@@ -1,0 +1,19 @@
+<meta name="viewport" content="width=device-width">
+
+@media all and (min-width: 960px) {
+h1{
+    font-size: 50px;
+  }
+}
+
+@media all and (max-width: 959px) and (min-width: 600px) {
+h1{
+    font-size: 5vw;
+  }
+}
+
+@media all and (max-width: 599px) and (min-width: 50px) {
+h1{
+    font-size: 6vw;
+  }
+}
