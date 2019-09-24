@@ -1,17 +1,37 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
 import Form from 'react-bootstrap/Form'
 import Dropdown from 'react-bootstrap/Dropdown'
 
+import api from '../../services/api'
+
 import './styles.css'
 
-import { clearString } from '../../helpers/mainHelper'
+import { clearString, isEmpty } from '../../helpers/mainHelper'
 
 export default function MainForm(props) {
 
+    const [data, setData] = useState({});
     const [key, setKey] = useState('bandeja');
+
+    useEffect(() => {
+        loadData()
+    }, [])
+
+    useEffect(() => {
+        console.log(isEmpty(data))
+        console.log(data.bandejas)
+    }, [data])
+
+    async function loadData() {
+        const response = await api.get('/')
+
+        const data = response.data
+
+        setData(data)
+    }
 
     return (
         <Form>  
@@ -26,29 +46,18 @@ export default function MainForm(props) {
                         <Dropdown bsPrefix='select'>
 
                             <Dropdown.Toggle className='selected'>
-                                {props.values.bandeja === '' ? <p className='placeholder'> Selecione a bandeja </p> : clearString(props.values.bandeja)}
+                                {isEmpty(props.values.bandeja) ? <p className='placeholder'> Selecione a bandeja </p> : clearString(props.values.bandeja.nome)}
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu className='select-options'>
-                                <Dropdown.Item className='option' onSelect={() => props.setValues.setBandeja('redonda-pequena')}>
-                                    <p>Redonda Pequena</p>
-                                    <p>R$ 10,00</p>
-                                </Dropdown.Item>
 
-                                <Dropdown.Item className='option' onSelect={() => props.setValues.setBandeja('redonda-grande')}>
-                                    <p>Redonda Grande</p>
-                                    <p>R$ 10,00</p>
-                                </Dropdown.Item>
-
-                                <Dropdown.Item className='option' onSelect={() => props.setValues.setBandeja('retangular-pequena')}>
-                                    <p>Retangular Pequena</p>
-                                    <p>R$ 10,00</p>
-                                </Dropdown.Item>
-
-                                <Dropdown.Item className='option' onSelect={() => props.setValues.setBandeja('retangular-grande')}>
-                                    <p>Retangular Grande</p>
-                                    <p>R$ 10,00</p>
-                                </Dropdown.Item>
+                                {!isEmpty(data) ? data.bandejas.map((bandeja) => (
+                                    <Dropdown.Item key={bandeja.id} className='option' onSelect={() => props.setValues.setBandeja(bandeja.id)}>
+                                        <p>{bandeja.nome}</p>
+                                        <p>R$ {bandeja.preco}</p>
+                                    </Dropdown.Item>
+                                )) : null}
+                                
                             </Dropdown.Menu>
 
                         </Dropdown>

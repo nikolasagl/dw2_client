@@ -10,13 +10,13 @@ export default function OrderResume(props) {
 
         <div className='order-resume'>
 
-            <div onClick={() => props.values.bandeja !== '' ? props.setDisplay.setDisplayBandeja(!props.display.displayBandeja) : {}} className='resume-cell'>
+            <div onClick={() => props.values.bandeja !== {} ? props.setDisplay.setDisplayBandeja(!props.display.displayBandeja) : {}} className='resume-cell'>
 
                 <p>Bandeja:
-                    <em> {props.values.bandeja !== '' ? clearString(props.values.bandeja) : ''}</em>
+                    <em> {props.values.bandeja !== {} ? clearString(props.values.bandeja.nome) : ''}</em>
 
                     {
-                        props.values.bandeja !== '' ?
+                        props.values.bandeja !== {} ?
                         props.display.displayBandeja === false ?
                         <FaAngleDown className='icon' /> :
                         <FaAngleUp className='icon' /> : null

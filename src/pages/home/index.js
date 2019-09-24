@@ -12,12 +12,12 @@ import './styles.css'
 
 function Home() {
 
-    const [bandeja, setBandeja] = useState('')
-    const [massa, setMassa] = useState('')
-    const [sabor1, setSabor1] = useState('')
-    const [sabor2, setSabor2] = useState('')
-    const [cobertura, setCobertura] = useState('')
-    const [confeito, setConfeito] = useState('')
+    const [bandeja, setBandeja] = useState({})
+    const [massa, setMassa] = useState({})
+    const [sabor1, setSabor1] = useState({})
+    const [sabor2, setSabor2] = useState({})
+    const [cobertura, setCobertura] = useState({})
+    const [confeito, setConfeito] = useState({})
 
     const [nome, setNome] = useState('')
     const [endereco, setEndereco] = useState('')
@@ -44,10 +44,6 @@ function Home() {
     function handleSubmit() {
         console.log({bandeja, massa, sabor1, sabor2, cobertura, confeito, nome, endereco, numero, bairro, telefone})
     }
-
-    useEffect(() => {
-        console.log('asjdnakdnas;djbaidjbasi')
-    }, [])
 
     return (
         <div>

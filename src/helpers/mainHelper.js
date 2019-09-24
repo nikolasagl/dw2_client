@@ -10,4 +10,12 @@ function titleCase(str) {
     return splitStr.join(' '); 
  }
 
-export {clearString, titleCase}
+ function isEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
+
+export {clearString, titleCase, isEmpty}
