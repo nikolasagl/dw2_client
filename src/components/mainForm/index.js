@@ -21,8 +21,6 @@ export default function MainForm(props) {
     }, [])
 
     useEffect(() => {
-        console.log(isEmpty(data))
-        console.log(data.bandejas)
     }, [data])
 
     async function loadData() {
@@ -52,7 +50,7 @@ export default function MainForm(props) {
                             <Dropdown.Menu className='select-options'>
 
                                 {!isEmpty(data) ? data.bandejas.map((bandeja) => (
-                                    <Dropdown.Item key={bandeja.id} className='option' onSelect={() => props.setValues.setBandeja(bandeja.id)}>
+                                    <Dropdown.Item key={bandeja.id} className='option' onSelect={() => props.setValues.setBandeja(bandeja)}>
                                         <p>{bandeja.nome}</p>
                                         <p>R$ {bandeja.preco}</p>
                                     </Dropdown.Item>
@@ -75,29 +73,18 @@ export default function MainForm(props) {
                         <Dropdown bsPrefix='select'>
 
                             <Dropdown.Toggle className='selected'>
-                                {props.values.massa === '' ? <p className='placeholder'> Selecione a massa </p> : clearString(props.values.massa)}
+                                {isEmpty(props.values.massa) ? <p className='placeholder'> Selecione a massa </p> : clearString(props.values.massa.nome)}
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu className='select-options'>
-                                <Dropdown.Item className='option' onSelect={() => props.setValues.setMassa('redonda-pequena')}>
-                                    <p>Redonda Pequena</p>
-                                    <p>R$ 10,00</p>
-                                </Dropdown.Item>
 
-                                <Dropdown.Item className='option' onSelect={() => props.setValues.setMassa('redonda-grande')}>
-                                    <p>Redonda Grande</p>
-                                    <p>R$ 10,00</p>
-                                </Dropdown.Item>
-
-                                <Dropdown.Item className='option' onSelect={() => props.setValues.setMassa('retangular-pequena')}>
-                                    <p>Retangular Pequena</p>
-                                    <p>R$ 10,00</p>
-                                </Dropdown.Item>
-
-                                <Dropdown.Item className='option' onSelect={() => props.setValues.setMassa('retangular-grande')}>
-                                    <p>Retangular Grande</p>
-                                    <p>R$ 10,00</p>
-                                </Dropdown.Item>
+                                {!isEmpty(data) ? data.massas.map((massa) => (
+                                    <Dropdown.Item key={massa.id} className='option' onSelect={() => props.setValues.setMassa(massa)}>
+                                        <p>{massa.nome}</p>
+                                        <p>R$ {massa.preco}</p>
+                                    </Dropdown.Item>
+                                )) : null}
+                                
                             </Dropdown.Menu>
 
                         </Dropdown>
@@ -115,29 +102,18 @@ export default function MainForm(props) {
                         <Dropdown bsPrefix='select'>
 
                             <Dropdown.Toggle className='selected'>
-                                {props.values.sabor1 === '' ? <p className='placeholder'> Selecione o primeiro sabor </p> : clearString(props.values.sabor1)}
+                                {isEmpty(props.values.sabor1) ? <p className='placeholder'> Selecione o primeiro sabor </p> : clearString(props.values.sabor1.nome)}
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu className='select-options'>
-                                <Dropdown.Item className='option' onSelect={() => props.setValues.setSabor1('redonda-pequena')}>
-                                    <p>Redonda Pequena</p>
-                                    <p>R$ 10,00</p>
-                                </Dropdown.Item>
 
-                                <Dropdown.Item className='option' onSelect={() => props.setValues.setSabor1('redonda-grande')}>
-                                    <p>Redonda Grande</p>
-                                    <p>R$ 10,00</p>
-                                </Dropdown.Item>
-
-                                <Dropdown.Item className='option' onSelect={() => props.setValues.setSabor1('retangular-pequena')}>
-                                    <p>Retangular Pequena</p>
-                                    <p>R$ 10,00</p>
-                                </Dropdown.Item>
-
-                                <Dropdown.Item className='option' onSelect={() => props.setValues.setSabor1('retangular-grande')}>
-                                    <p>Retangular Grande</p>
-                                    <p>R$ 10,00</p>
-                                </Dropdown.Item>
+                                {!isEmpty(data) ? data.sabores.map((sabor1) => (
+                                    <Dropdown.Item key={sabor1.id} className='option' onSelect={() => props.setValues.setSabor1(sabor1)}>
+                                        <p>{sabor1.nome}</p>
+                                        <p>R$ {sabor1.preco}</p>
+                                    </Dropdown.Item>
+                                )) : null}
+                                
                             </Dropdown.Menu>
 
                         </Dropdown>
@@ -155,29 +131,18 @@ export default function MainForm(props) {
                         <Dropdown bsPrefix='select'>
 
                             <Dropdown.Toggle className='selected'>
-                                {props.values.sabor2 === '' ? <p className='placeholder'> Selecione o segundo sabor </p> : clearString(props.values.sabor2)}                            
+                                {isEmpty(props.values.sabor2) ? <p className='placeholder'> Selecione o segundo sabor </p> : clearString(props.values.sabor2.nome)}
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu className='select-options'>
-                                <Dropdown.Item className='option' onSelect={() => props.setValues.setSabor2('redonda-pequena')}>
-                                    <p>Redonda Pequena</p>
-                                    <p>R$ 10,00</p>
-                                </Dropdown.Item>
 
-                                <Dropdown.Item className='option' onSelect={() => props.setValues.setSabor2('redonda-grande')}>
-                                    <p>Redonda Grande</p>
-                                    <p>R$ 10,00</p>
-                                </Dropdown.Item>
-
-                                <Dropdown.Item className='option' onSelect={() => props.setValues.setSabor2('retangular-pequena')}>
-                                    <p>Retangular Pequena</p>
-                                    <p>R$ 10,00</p>
-                                </Dropdown.Item>
-
-                                <Dropdown.Item className='option' onSelect={() => props.setValues.setSabor2('retangular-grande')}>
-                                    <p>Retangular Grande</p>
-                                    <p>R$ 10,00</p>
-                                </Dropdown.Item>
+                                {!isEmpty(data) ? data.sabores.map((sabor2) => (
+                                    <Dropdown.Item key={sabor2.id} className='option' onSelect={() => props.setValues.setSabor2(sabor2)}>
+                                        <p>{sabor2.nome}</p>
+                                        <p>R$ {sabor2.preco}</p>
+                                    </Dropdown.Item>
+                                )) : null}
+                                
                             </Dropdown.Menu>
 
                         </Dropdown>
@@ -195,29 +160,18 @@ export default function MainForm(props) {
                         <Dropdown bsPrefix='select'>
 
                             <Dropdown.Toggle className='selected'>
-                                {props.values.cobertura === '' ? <p className='placeholder'> Selecione a cobertura </p> : clearString(props.values.cobertura)}                            
+                                {isEmpty(props.values.cobertura) ? <p className='placeholder'> Selecione a cobertura </p> : clearString(props.values.cobertura.nome)}
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu className='select-options'>
-                                <Dropdown.Item className='option' onSelect={() => props.setValues.setCobertura('redonda-pequena')}>
-                                    <p>Redonda Pequena</p>
-                                    <p>R$ 10,00</p>
-                                </Dropdown.Item>
 
-                                <Dropdown.Item className='option' onSelect={() => props.setValues.setCobertura('redonda-grande')}>
-                                    <p>Redonda Grande</p>
-                                    <p>R$ 10,00</p>
-                                </Dropdown.Item>
-
-                                <Dropdown.Item className='option' onSelect={() => props.setValues.setCobertura('retangular-pequena')}>
-                                    <p>Retangular Pequena</p>
-                                    <p>R$ 10,00</p>
-                                </Dropdown.Item>
-
-                                <Dropdown.Item className='option' onSelect={() => props.setValues.setCobertura('retangular-grande')}>
-                                    <p>Retangular Grande</p>
-                                    <p>R$ 10,00</p>
-                                </Dropdown.Item>
+                                {!isEmpty(data) ? data.coberturas.map((cobertura) => (
+                                    <Dropdown.Item key={cobertura.id} className='option' onSelect={() => props.setValues.setCobertura(cobertura)}>
+                                        <p>{cobertura.nome}</p>
+                                        <p>R$ {cobertura.preco}</p>
+                                    </Dropdown.Item>
+                                )) : null}
+                                
                             </Dropdown.Menu>
 
                         </Dropdown>
@@ -235,29 +189,18 @@ export default function MainForm(props) {
                         <Dropdown bsPrefix='select'>
 
                             <Dropdown.Toggle className='selected'>
-                                {props.values.confeito === '' ? <p className='placeholder'> Selecione o confeito </p> : clearString(props.values.confeito)}                                
+                                {isEmpty(props.values.confeito) ? <p className='placeholder'> Selecione os confeitos </p> : clearString(props.values.confeito.nome)}
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu className='select-options'>
-                                <Dropdown.Item className='option' onSelect={() => props.setValues.setConfeito('redonda-pequena')}>
-                                    <p>Redonda Pequena</p>
-                                    <p>R$ 10,00</p>
-                                </Dropdown.Item>
 
-                                <Dropdown.Item className='option' onSelect={() => props.setValues.setConfeito('redonda-grande')}>
-                                    <p>Redonda Grande</p>
-                                    <p>R$ 10,00</p>
-                                </Dropdown.Item>
-
-                                <Dropdown.Item className='option' onSelect={() => props.setValues.setConfeito('retangular-pequena')}>
-                                    <p>Retangular Pequena</p>
-                                    <p>R$ 10,00</p>
-                                </Dropdown.Item>
-
-                                <Dropdown.Item className='option' onSelect={() => props.setValues.setConfeito('retangular-grande')}>
-                                    <p>Retangular Grande</p>
-                                    <p>R$ 10,00</p>
-                                </Dropdown.Item>
+                                {!isEmpty(data) ? data.confeitos.map((confeito) => (
+                                    <Dropdown.Item key={confeito.id} className='option' onSelect={() => props.setValues.setConfeito(confeito)}>
+                                        <p>{confeito.nome}</p>
+                                        <p>R$ {confeito.preco}</p>
+                                    </Dropdown.Item>
+                                )) : null}
+                                
                             </Dropdown.Menu>
 
                         </Dropdown>

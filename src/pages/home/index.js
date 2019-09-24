@@ -8,6 +8,8 @@ import Header from '../../components/header'
 import Content from '../../components/content'
 import Contact from '../../components/contact'
 
+import api from '../../services/api'
+
 import './styles.css'
 
 function Home() {
@@ -41,8 +43,24 @@ function Home() {
     const handleCloseModalQuemSomos = () => setModalQuemSomos(false);
     const handleShowModalQuemSomos = () => setModalQuemSomos(true);
 
-    function handleSubmit() {
-        console.log({bandeja, massa, sabor1, sabor2, cobertura, confeito, nome, endereco, numero, bairro, telefone})
+    async function handleSubmit() {
+
+        const data = {
+            bandeja: bandeja.id,
+            massa: massa.id,
+            sabor1: sabor1.id,
+            sabor2: sabor2.id,
+            cobertura: cobertura.id,
+            confeito: confeito.id,
+            nome,
+            endereco,
+            numero,
+            bairro,
+            telefone
+        }
+
+        const response = await api.post('/', data)
+        console.log(response.data)
     }
 
     return (
