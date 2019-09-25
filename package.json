@@ -11,7 +11,9 @@
     "react-icons": "3.7.0",
     "react-router-dom": "5.0.1",
     "react-scripts": "3.1.1",
-    "react-scroll-to-component": "1.0.2"
+    "react-scroll-to-component": "1.0.2",
+    "react-slick": "^0.25.2",
+    "slick-carousel": "^1.8.1"
   },
   "scripts": {
     "start": "react-scripts start",

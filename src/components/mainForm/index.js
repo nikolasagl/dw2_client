@@ -4,9 +4,14 @@ import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
 import Form from 'react-bootstrap/Form'
 import Dropdown from 'react-bootstrap/Dropdown'
+import Slider from 'react-slick'
 
 import api from '../../services/api'
 
+import testeImg from '../../assets/img/teste.jpg'
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import './styles.css'
 
 import { clearString, isEmpty } from '../../helpers/mainHelper'
@@ -15,6 +20,16 @@ export default function MainForm(props) {
 
     const [data, setData] = useState({});
     const [key, setKey] = useState('bandeja');
+
+    const settings = {
+        dots: true,
+        className: "center custom-slider",
+        centerMode: true,
+        infinite: true,
+        centerPadding: "60px",
+        slidesToShow: 1,
+        speed: 500
+    }
 
     useEffect(() => {
         loadData()
@@ -32,7 +47,7 @@ export default function MainForm(props) {
     }
 
     return (
-        <Form>  
+        <Form>
             <Tabs id="controlled-tab" activeKey={key} onSelect={k => setKey(k)}>
 
                 <Tab className='tab' eventKey="bandeja" title="Bandeja">
@@ -41,7 +56,20 @@ export default function MainForm(props) {
 
                         <Form.Label className='label'>Bandeja</Form.Label>
 
-                        <Dropdown bsPrefix='select'>
+                        <Slider {...settings}>
+                            {!isEmpty(data) ? data.bandejas.map((bandeja) => (
+                                <div key={bandeja.id} className='' onClick={() => {
+                                    props.setValues.setBandeja(bandeja)
+                                    props.setValues.setPreco({ ...props.values.preco, bandeja: bandeja.preco })
+                                }}>
+                                    <img className='slider-item' src={testeImg} alt='teste' />
+                                    <p>{bandeja.nome}</p>
+                                    <p>R$ {bandeja.preco}</p>
+                                </div>
+                            )) : null}
+                        </Slider>
+
+                        {/* <Dropdown bsPrefix='select'>
 
                             <Dropdown.Toggle className='selected'>
                                 {isEmpty(props.values.bandeja) ? <p className='placeholder'> Selecione a bandeja </p> : clearString(props.values.bandeja.nome)}
@@ -50,7 +78,9 @@ export default function MainForm(props) {
                             <Dropdown.Menu className='select-options'>
 
                                 {!isEmpty(data) ? data.bandejas.map((bandeja) => (
-                                    <Dropdown.Item key={bandeja.id} className='option' onSelect={() => props.setValues.setBandeja(bandeja)}>
+                                    <Dropdown.Item key={bandeja.id} className='option' onSelect={() => {
+                                        props.setValues.setBandeja(bandeja)
+                                        props.setValues.setPreco({ ...props.values.preco, bandeja: bandeja.preco })}}>
                                         <p>{bandeja.nome}</p>
                                         <p>R$ {bandeja.preco}</p>
                                     </Dropdown.Item>
@@ -58,7 +88,7 @@ export default function MainForm(props) {
                                 
                             </Dropdown.Menu>
 
-                        </Dropdown>
+                        </Dropdown> */}
 
                     </Form.Group>
 
@@ -79,12 +109,15 @@ export default function MainForm(props) {
                             <Dropdown.Menu className='select-options'>
 
                                 {!isEmpty(data) ? data.massas.map((massa) => (
-                                    <Dropdown.Item key={massa.id} className='option' onSelect={() => props.setValues.setMassa(massa)}>
+                                    <Dropdown.Item key={massa.id} className='option' onSelect={() => {
+                                        props.setValues.setMassa(massa)
+                                        props.setValues.setPreco({ ...props.values.preco, massa: massa.preco })
+                                    }}>
                                         <p>{massa.nome}</p>
                                         <p>R$ {massa.preco}</p>
                                     </Dropdown.Item>
                                 )) : null}
-                                
+
                             </Dropdown.Menu>
 
                         </Dropdown>
@@ -108,12 +141,15 @@ export default function MainForm(props) {
                             <Dropdown.Menu className='select-options'>
 
                                 {!isEmpty(data) ? data.sabores.map((sabor1) => (
-                                    <Dropdown.Item key={sabor1.id} className='option' onSelect={() => props.setValues.setSabor1(sabor1)}>
+                                    <Dropdown.Item key={sabor1.id} className='option' onSelect={() => {
+                                        props.setValues.setSabor1(sabor1)
+                                        props.setValues.setPreco({ ...props.values.preco, sabor1: sabor1.preco })
+                                    }}>
                                         <p>{sabor1.nome}</p>
                                         <p>R$ {sabor1.preco}</p>
                                     </Dropdown.Item>
                                 )) : null}
-                                
+
                             </Dropdown.Menu>
 
                         </Dropdown>
@@ -137,12 +173,15 @@ export default function MainForm(props) {
                             <Dropdown.Menu className='select-options'>
 
                                 {!isEmpty(data) ? data.sabores.map((sabor2) => (
-                                    <Dropdown.Item key={sabor2.id} className='option' onSelect={() => props.setValues.setSabor2(sabor2)}>
+                                    <Dropdown.Item key={sabor2.id} className='option' onSelect={() => {
+                                        props.setValues.setSabor2(sabor2)
+                                        props.setValues.setPreco({ ...props.values.preco, sabor2: sabor2.preco })
+                                    }}>
                                         <p>{sabor2.nome}</p>
                                         <p>R$ {sabor2.preco}</p>
                                     </Dropdown.Item>
                                 )) : null}
-                                
+
                             </Dropdown.Menu>
 
                         </Dropdown>
@@ -166,12 +205,15 @@ export default function MainForm(props) {
                             <Dropdown.Menu className='select-options'>
 
                                 {!isEmpty(data) ? data.coberturas.map((cobertura) => (
-                                    <Dropdown.Item key={cobertura.id} className='option' onSelect={() => props.setValues.setCobertura(cobertura)}>
+                                    <Dropdown.Item key={cobertura.id} className='option' onSelect={() => {
+                                        props.setValues.setCobertura(cobertura)
+                                        props.setValues.setPreco({ ...props.values.preco, cobertura: cobertura.preco })
+                                    }}>
                                         <p>{cobertura.nome}</p>
                                         <p>R$ {cobertura.preco}</p>
                                     </Dropdown.Item>
                                 )) : null}
-                                
+
                             </Dropdown.Menu>
 
                         </Dropdown>
@@ -195,12 +237,15 @@ export default function MainForm(props) {
                             <Dropdown.Menu className='select-options'>
 
                                 {!isEmpty(data) ? data.confeitos.map((confeito) => (
-                                    <Dropdown.Item key={confeito.id} className='option' onSelect={() => props.setValues.setConfeito(confeito)}>
+                                    <Dropdown.Item key={confeito.id} className='option' onSelect={() => {
+                                        props.setValues.setConfeito(confeito)
+                                        props.setValues.setPreco({ ...props.values.preco, confeito: confeito.preco })
+                                    }}>
                                         <p>{confeito.nome}</p>
                                         <p>R$ {confeito.preco}</p>
                                     </Dropdown.Item>
                                 )) : null}
-                                
+
                             </Dropdown.Menu>
 
                         </Dropdown>

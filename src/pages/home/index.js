@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 import Container from 'react-bootstrap/Container'
 
@@ -22,10 +22,24 @@ function Home() {
     const [confeito, setConfeito] = useState({})
 
     const [nome, setNome] = useState('')
+    const [email, setEmail] = useState('')
     const [endereco, setEndereco] = useState('')
     const [numero, setNumero] = useState('')
     const [bairro, setBairro] = useState('')
+    const [complemento, setComplemento] = useState('')
     const [telefone, setTelefone] = useState('')
+    const [dataEntrega, setDataEntrega] = useState('')
+
+    const [preco, setPreco] = useState({
+        bandeja: 0,
+        massa: 0,
+        sabor1: 0,
+        sabor2: 0,
+        cobertura: 0,
+        confeito: 0
+    })
+
+    var total = 0
 
     const [modalComoFunciona, setModalComoFunciona] = useState(false);
     const [modalQuemSomos, setModalQuemSomos] = useState(false);
@@ -45,6 +59,10 @@ function Home() {
 
     async function handleSubmit() {
 
+        Object.keys(preco).map((key) => {
+            total += preco[key];
+        });
+
         const data = {
             bandeja: bandeja.id,
             massa: massa.id,
@@ -53,14 +71,20 @@ function Home() {
             cobertura: cobertura.id,
             confeito: confeito.id,
             nome,
+            email,
             endereco,
             numero,
             bairro,
-            telefone
+            complemento,
+            telefone,
+            data_entrega: dataEntrega,
+            preco: total
         }
 
-        const response = await api.post('/', data)
-        console.log(response.data)
+        console.log(data)
+
+        // const response = await api.post('/', data)
+        // console.log(response.data)
     }
 
     return (
@@ -75,8 +99,8 @@ function Home() {
 
                 <Content
                     cardHeaderTitle='Monte seu Bolo'
-                    values={{ bandeja, massa, sabor1, sabor2, cobertura, confeito }}
-                    setValues={{ setBandeja, setMassa, setSabor1, setSabor2, setCobertura, setConfeito }}
+                    values={{ bandeja, massa, sabor1, sabor2, cobertura, confeito, preco }}
+                    setValues={{ setBandeja, setMassa, setSabor1, setSabor2, setCobertura, setConfeito, setPreco }}
                     display={{ displayBandeja, displayMassa, displaySabor1, displaySabor2, displayCobertura, displayConfeito }}
                     setDisplay={{ setDisplayBandeja, setDisplayMassa, setDisplaySabor1, setDisplaySabor2, setDisplayCobertura, setDisplayConfeito }} />
 
@@ -85,8 +109,8 @@ function Home() {
             <Container bsPrefix='contact-container'>
 
                 <Contact
-                    values={{ nome, endereco, numero, bairro, telefone }}
-                    setValues={{ setNome, setEndereco, setNumero, setBairro, setTelefone }}
+                    values={{ nome, email, endereco, numero, bairro, complemento, telefone, dataEntrega, preco }}
+                    setValues={{ setNome, setEmail, setEndereco, setNumero, setBairro, setComplemento, setTelefone, setDataEntrega }}
                     submit={handleSubmit} />
 
             </Container>

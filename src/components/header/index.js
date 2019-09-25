@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { FaWhatsapp, FaInstagram, FaFacebookF } from 'react-icons/fa'
 
-import logo from '../../assets/logo.png'
+import logo from '../../assets/img/logo.png'
 
 import './styles.css'
 
