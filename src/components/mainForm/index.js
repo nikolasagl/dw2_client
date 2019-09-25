@@ -22,11 +22,9 @@ export default function MainForm(props) {
     const [key, setKey] = useState('bandeja');
 
     const settings = {
-        dots: true,
+        dots: false,
         className: "center custom-slider",
-        centerMode: true,
         infinite: true,
-        centerPadding: "60px",
         slidesToShow: 1,
         speed: 500
     }
