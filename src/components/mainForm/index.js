@@ -62,31 +62,10 @@ export default function MainForm(props) {
                                 }}>
                                     <img className='slider-item' src={testeImg} alt='teste' />
                                     <p>{bandeja.nome}</p>
-                                    <p>R$ {bandeja.preco}</p>
+                                    <p>Preço: R$ {bandeja.preco}</p>
                                 </div>
                             )) : null}
                         </Slider>
-
-                        {/* <Dropdown bsPrefix='select'>
-
-                            <Dropdown.Toggle className='selected'>
-                                {isEmpty(props.values.bandeja) ? <p className='placeholder'> Selecione a bandeja </p> : clearString(props.values.bandeja.nome)}
-                            </Dropdown.Toggle>
-
-                            <Dropdown.Menu className='select-options'>
-
-                                {!isEmpty(data) ? data.bandejas.map((bandeja) => (
-                                    <Dropdown.Item key={bandeja.id} className='option' onSelect={() => {
-                                        props.setValues.setBandeja(bandeja)
-                                        props.setValues.setPreco({ ...props.values.preco, bandeja: bandeja.preco })}}>
-                                        <p>{bandeja.nome}</p>
-                                        <p>R$ {bandeja.preco}</p>
-                                    </Dropdown.Item>
-                                )) : null}
-                                
-                            </Dropdown.Menu>
-
-                        </Dropdown> */}
 
                     </Form.Group>
 
@@ -98,27 +77,18 @@ export default function MainForm(props) {
 
                         <Form.Label className='label'>Massa</Form.Label>
 
-                        <Dropdown bsPrefix='select'>
-
-                            <Dropdown.Toggle className='selected'>
-                                {isEmpty(props.values.massa) ? <p className='placeholder'> Selecione a massa </p> : clearString(props.values.massa.nome)}
-                            </Dropdown.Toggle>
-
-                            <Dropdown.Menu className='select-options'>
-
-                                {!isEmpty(data) ? data.massas.map((massa) => (
-                                    <Dropdown.Item key={massa.id} className='option' onSelect={() => {
-                                        props.setValues.setMassa(massa)
-                                        props.setValues.setPreco({ ...props.values.preco, massa: massa.preco })
-                                    }}>
-                                        <p>{massa.nome}</p>
-                                        <p>R$ {massa.preco}</p>
-                                    </Dropdown.Item>
-                                )) : null}
-
-                            </Dropdown.Menu>
-
-                        </Dropdown>
+                        <Slider {...settings}>
+                            {!isEmpty(data) ? data.massas.map((massa) => (
+                                <div key={massa.id} className='' onClick={() => {
+                                    props.setValues.setMassa(massa)
+                                    props.setValues.setPreco({ ...props.values.preco, massa: massa.preco })
+                                }}>
+                                    <img className='slider-item' src={testeImg} alt='teste' />
+                                    <p>{massa.nome}</p>
+                                    <p>Preço: R$ {massa.preco}</p>
+                                </div>
+                            )) : null}
+                        </Slider>
 
                     </Form.Group>
 
@@ -130,27 +100,18 @@ export default function MainForm(props) {
 
                         <Form.Label className='label'>Sabor Primario</Form.Label>
 
-                        <Dropdown bsPrefix='select'>
-
-                            <Dropdown.Toggle className='selected'>
-                                {isEmpty(props.values.sabor1) ? <p className='placeholder'> Selecione o primeiro sabor </p> : clearString(props.values.sabor1.nome)}
-                            </Dropdown.Toggle>
-
-                            <Dropdown.Menu className='select-options'>
-
-                                {!isEmpty(data) ? data.sabores.map((sabor1) => (
-                                    <Dropdown.Item key={sabor1.id} className='option' onSelect={() => {
-                                        props.setValues.setSabor1(sabor1)
-                                        props.setValues.setPreco({ ...props.values.preco, sabor1: sabor1.preco })
-                                    }}>
-                                        <p>{sabor1.nome}</p>
-                                        <p>R$ {sabor1.preco}</p>
-                                    </Dropdown.Item>
-                                )) : null}
-
-                            </Dropdown.Menu>
-
-                        </Dropdown>
+                        <Slider {...settings}>
+                            {!isEmpty(data) ? data.sabores.map((sabor) => (
+                                <div key={sabor.id} className='' onClick={() => {
+                                    props.setValues.setSabor1(sabor)
+                                    props.setValues.setPreco({ ...props.values.preco, sabor1: sabor.preco })
+                                }}>
+                                    <img className='slider-item' src={testeImg} alt='teste' />
+                                    <p>{sabor.nome}</p>
+                                    <p>Preço: R$ {sabor.preco}</p>
+                                </div>
+                            )) : null}
+                        </Slider>
 
                     </Form.Group>
 

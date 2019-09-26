@@ -15,17 +15,34 @@
     text-align: left;
 }
 
+.resume-cell-row {
+    margin: 0 !important;
+    justify-content: space-between !important;
+    padding-top: 15px !important;
+}
+
+.resume-cell-content {
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+}
+
 .resume-cell .icon {
-    margin-top: 10px;
-    margin-right: 5px;
-    float: right;
+    margin-right: 10px;
 }
 
-.resume-cell p {
+.resume-cell-label {
+}
+
+/* .resume-cell p {
     font-size: 17px;
     margin-top: 10px;
 }
 
-.resume-cell p em {
+.resume-cell em {
+    margin: 0 auto;
     font-size: 17px;
 }
+
+.order-resume-label {
+    border-right: 1px solid lightgray;
+} */

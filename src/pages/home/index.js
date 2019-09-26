@@ -39,7 +39,7 @@ function Home() {
         confeito: 0
     })
 
-    var total = 0
+    const [total, setTotal] = useState(0)
 
     const [modalComoFunciona, setModalComoFunciona] = useState(false);
     const [modalQuemSomos, setModalQuemSomos] = useState(false);
@@ -57,11 +57,14 @@ function Home() {
     const handleCloseModalQuemSomos = () => setModalQuemSomos(false);
     const handleShowModalQuemSomos = () => setModalQuemSomos(true);
 
+    
     async function handleSubmit() {
-
+        var aux = 0
+        
         Object.keys(preco).map((key) => {
-            total += preco[key];
+            aux += preco[key]
         });
+        setTotal(10)
 
         const data = {
             bandeja: bandeja.id,
