@@ -69,14 +69,15 @@ nav a.active{
 }
 
 .custom-slider {
-    margin: 50px auto -90px auto;
-    max-width: 600px !important;
-    min-height: 400px !important;
+    margin: 10px auto -90px auto;
+    max-width: 450px !important;
+    min-height: 300px !important;
 }
 
 .slider-item {
-    max-width: 230px;
-    height: 200px;
+    max-width: 160px;
+    height: 140px;
     margin: 0 auto 30px auto;
     border-radius: 50%;
+    border: 1px solid black;
 }

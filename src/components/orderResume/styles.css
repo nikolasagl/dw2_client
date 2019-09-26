@@ -30,19 +30,20 @@
     margin-right: 10px;
 }
 
+.resume-cell .icon-total {
+    margin-top: -20px;
+    margin-right: 10px;
+}
+
 .resume-cell-label {
 }
 
-/* .resume-cell p {
-    font-size: 17px;
-    margin-top: 10px;
+.total-item {
+    margin-left: -10px;
+    padding-top: 15px;  
+    border-top: 1px solid black;
 }
 
-.resume-cell em {
-    margin: 0 auto;
-    font-size: 17px;
+.total-item p {
+    margin-left: 10px;
 }
-
-.order-resume-label {
-    border-right: 1px solid lightgray;
-} */

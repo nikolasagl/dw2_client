@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import Container from 'react-bootstrap/Container'
 
@@ -14,10 +14,10 @@ import './styles.css'
 
 function Home() {
 
-    const [bandeja, setBandeja] = useState({})
+    const [peso, setPeso] = useState(1)
+    const [forma, setForma] = useState({})
     const [massa, setMassa] = useState({})
-    const [sabor1, setSabor1] = useState({})
-    const [sabor2, setSabor2] = useState({})
+    const [sabor, setSabor] = useState({})
     const [cobertura, setCobertura] = useState({})
     const [confeito, setConfeito] = useState({})
 
@@ -31,46 +31,49 @@ function Home() {
     const [dataEntrega, setDataEntrega] = useState('')
 
     const [preco, setPreco] = useState({
-        bandeja: 0,
+        forma: 0,
         massa: 0,
-        sabor1: 0,
-        sabor2: 0,
+        sabor: 0,
         cobertura: 0,
         confeito: 0
     })
 
+    const [totalParcial, setTotalParcial] = useState(0)
     const [total, setTotal] = useState(0)
 
-    const [modalComoFunciona, setModalComoFunciona] = useState(false);
-    const [modalQuemSomos, setModalQuemSomos] = useState(false);
+    const [modalComoFunciona, setModalComoFunciona] = useState(false)
+    const [modalQuemSomos, setModalQuemSomos] = useState(false)
 
-    const [displayBandeja, setDisplayBandeja] = useState(false);
-    const [displayMassa, setDisplayMassa] = useState(false);
-    const [displaySabor1, setDisplaySabor1] = useState(false);
-    const [displaySabor2, setDisplaySabor2] = useState(false);
-    const [displayCobertura, setDisplayCobertura] = useState(false);
-    const [displayConfeito, setDisplayConfeito] = useState(false);
+    const [displayPeso, setDisplayPeso] = useState(false)
+    const [displayForma, setDisplayForma] = useState(false)
+    const [displayMassa, setDisplayMassa] = useState(false)
+    const [displaySabor, setDisplaySabor] = useState(false)
+    const [displayCobertura, setDisplayCobertura] = useState(false)
+    const [displayConfeito, setDisplayConfeito] = useState(false)
 
-    const handleCloseModalComoFunciona = () => setModalComoFunciona(false);
-    const handleShowModalComoFunciona = () => setModalComoFunciona(true);
+    const handleCloseModalComoFunciona = () => setModalComoFunciona(false)
+    const handleShowModalComoFunciona = () => setModalComoFunciona(true)
 
-    const handleCloseModalQuemSomos = () => setModalQuemSomos(false);
-    const handleShowModalQuemSomos = () => setModalQuemSomos(true);
+    const handleCloseModalQuemSomos = () => setModalQuemSomos(false)
+    const handleShowModalQuemSomos = () => setModalQuemSomos(true)
 
-    
-    async function handleSubmit() {
+    useEffect(() => {
         var aux = 0
-        
+
         Object.keys(preco).map((key) => {
             aux += preco[key]
-        });
-        setTotal(10)
+        })
+        setTotalParcial(aux)
+        setTotal(aux * peso)
+    }, [preco, peso])
+    
+    async function handleSubmit() {
 
         const data = {
-            bandeja: bandeja.id,
+            forma: forma.id,
             massa: massa.id,
-            sabor1: sabor1.id,
-            sabor2: sabor2.id,
+            sabor: sabor.id,
+            peso: peso,
             cobertura: cobertura.id,
             confeito: confeito.id,
             nome,
@@ -86,8 +89,8 @@ function Home() {
 
         console.log(data)
 
-        // const response = await api.post('/', data)
-        // console.log(response.data)
+        const response = await api.post('/', data)
+        console.log(response.data)
     }
 
     return (
@@ -102,17 +105,17 @@ function Home() {
 
                 <Content
                     cardHeaderTitle='Monte seu Bolo'
-                    values={{ bandeja, massa, sabor1, sabor2, cobertura, confeito, preco }}
-                    setValues={{ setBandeja, setMassa, setSabor1, setSabor2, setCobertura, setConfeito, setPreco }}
-                    display={{ displayBandeja, displayMassa, displaySabor1, displaySabor2, displayCobertura, displayConfeito }}
-                    setDisplay={{ setDisplayBandeja, setDisplayMassa, setDisplaySabor1, setDisplaySabor2, setDisplayCobertura, setDisplayConfeito }} />
+                    values={{ peso, forma, massa, sabor, cobertura, confeito, preco, totalParcial, total }}
+                    setValues={{ setPeso, setForma, setMassa, setSabor, setCobertura, setConfeito, setPreco }}
+                    display={{ displayPeso, displayForma, displayMassa, displaySabor, displayCobertura, displayConfeito }}
+                    setDisplay={{ setDisplayPeso, setDisplayForma, setDisplayMassa, setDisplaySabor, setDisplayCobertura, setDisplayConfeito }} />
 
             </Container>
 
             <Container bsPrefix='contact-container'>
 
                 <Contact
-                    values={{ nome, email, endereco, numero, bairro, complemento, telefone, dataEntrega, preco }}
+                    values={{ nome, email, endereco, numero, bairro, complemento, telefone, dataEntrega, preco, totalParcial, total }}
                     setValues={{ setNome, setEmail, setEndereco, setNumero, setBairro, setComplemento, setTelefone, setDataEntrega }}
                     submit={handleSubmit} />
 
