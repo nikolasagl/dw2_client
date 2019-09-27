@@ -4,10 +4,11 @@
     align-items: center !important;
     height: 100vh !important;
     font-family: 'Hammersmith One', sans-serif !important;
+    background: linear-gradient(transparent, rgb(110, 104, 110), rgb(8, 8, 8));
 }
 
 .card-admin {
-    min-width: 420px !important;
+    min-width: 300px !important;
     text-align: center !important;
 }
 
@@ -21,6 +22,7 @@
 
 .admin-card-body {
     padding: 30px !important;
+    margin-bottom: -40px !important;
 }
 
 .admin-card-footer {
