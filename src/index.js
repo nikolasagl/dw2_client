@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 
 import Routes from './routes';
 
-// import './bootstrap.css'
-import './styles.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 ReactDOM.render(<Routes />, document.getElementById('root'));

@@ -1,11 +1,13 @@
-.container {
+.main-container {
+    min-height: 930px !important;
     position: relative;
     z-index: 1;
-    background-color: #ffd09e;
+    background-color:  rgba(254, 223, 255, 0.377);
+    border-bottom: 1px solid black;
 }
 
-.container::before {
-    background-image: url("../../assets/bla.jpg");
+.main-container::before {
+    background-image: url("../../assets/img/background.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     content: "";
