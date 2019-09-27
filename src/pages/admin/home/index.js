@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
 import Container from 'react-bootstrap/Container'
-import Card from 'react-bootstrap/Card'
-import Form from 'react-bootstrap/Form'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 import './styles.css'
 
@@ -12,7 +12,13 @@ function Admin(props) {
 
         <Container className='admin-index-container'>
 
-            
+            <Row>
+
+                <Col className='admin-header'>
+                    HEADER
+                </Col>
+
+            </Row>
 
         </Container>
     )

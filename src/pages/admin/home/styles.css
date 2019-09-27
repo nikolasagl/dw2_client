@@ -1,7 +1,15 @@
 .admin-index-container {
     display: flex !important;
     justify-content: center !important;
-    align-items: center !important;
     height: 100vh !important;
+    width: 100vw !important;
     font-family: 'Hammersmith One', sans-serif !important;
+    background: red;
+}
+
+.admin-header {
+    width: 100vw !important;
+    height: 70px;
+    background: black;
+    color: white;
 }
