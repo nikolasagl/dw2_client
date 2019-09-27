@@ -1,121 +1,127 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
-import scrollToComponent from 'react-scroll-to-component'
+import Container from 'react-bootstrap/Container'
 
-import TopMenu from '../../components/menu/index'
-import HomeForm from '../../components/homeForm/index'
-import ContactForm from '../../components/contactForm/index'
+import ModalQuemSomos from '../../components/main/modal/modalQuemSomos'
+import ModalComoFunciona from '../../components/main/modal/modalComoFunciona'
+import Header from '../../components/main/header'
+import Content from '../../components/main/content'
+import Contact from '../../components/main/contact'
+
+import api from '../../services/api'
 
 import './styles.css'
 
 function Home() {
 
-    const [bandeja, setBandeja] = useState({ value: '', isVisible: false })
-    const [massa, setMassa] = useState({ value: '', isVisible: false })
-    const [saborPrimario, setSaborPrimario] = useState({ value: '', isVisible: false })
-    const [saborSecundario, setSaborSecundario] = useState({ value: '', isVisible: false })
-    const [cobertura, setCobertura] = useState({ value: '', isVisible: false })
-    const [confeito, setConfeito] = useState({ value: '', isVisible: false })
+    const [peso, setPeso] = useState(1)
+    const [forma, setForma] = useState({})
+    const [massa, setMassa] = useState({})
+    const [sabor, setSabor] = useState({})
+    const [cobertura, setCobertura] = useState({})
+    const [confeito, setConfeito] = useState({})
 
-    var violet = null
-    var hidden = true
+    const [nome, setNome] = useState('')
+    const [email, setEmail] = useState('')
+    const [endereco, setEndereco] = useState('')
+    const [numero, setNumero] = useState('')
+    const [bairro, setBairro] = useState('')
+    const [complemento, setComplemento] = useState('')
+    const [telefone, setTelefone] = useState('')
+    const [dataEntrega, setDataEntrega] = useState('')
 
-    // if (hidden)
-    //     document.body.style.overflow = 'hidden'
+    const [preco, setPreco] = useState({
+        forma: 0,
+        massa: 0,
+        sabor: 0,
+        cobertura: 0,
+        confeito: 0
+    })
 
-    function handleSubmit(e) {
-        e.preventDefault()
+    const [totalParcial, setTotalParcial] = useState(0)
+    const [total, setTotal] = useState(0)
 
-        if (bandeja.value !== '' && massa.value !== '' && saborPrimario.value !== '' && saborSecundario.value !== '' && cobertura.value !== '' && confeito.value !== '') {
-            console.log(bandeja, massa, saborPrimario, saborSecundario, cobertura, confeito)
+    const [modalComoFunciona, setModalComoFunciona] = useState(false)
+    const [modalQuemSomos, setModalQuemSomos] = useState(false)
+
+    const [displayPeso, setDisplayPeso] = useState(false)
+    const [displayForma, setDisplayForma] = useState(false)
+    const [displayMassa, setDisplayMassa] = useState(false)
+    const [displaySabor, setDisplaySabor] = useState(false)
+    const [displayCobertura, setDisplayCobertura] = useState(false)
+    const [displayConfeito, setDisplayConfeito] = useState(false)
+
+    const handleCloseModalComoFunciona = () => setModalComoFunciona(false)
+    const handleShowModalComoFunciona = () => setModalComoFunciona(true)
+
+    const handleCloseModalQuemSomos = () => setModalQuemSomos(false)
+    const handleShowModalQuemSomos = () => setModalQuemSomos(true)
+
+    useEffect(() => {
+        var aux = 0
+
+        Object.keys(preco).map((key) => {
+            aux += preco[key]
+        })
+        setTotalParcial(aux)
+        setTotal(aux * peso)
+    }, [preco, peso])
+    
+    async function handleSubmit() {
+
+        const data = {
+            forma: forma.id,
+            massa: massa.id,
+            sabor: sabor.id,
+            peso: peso,
+            cobertura: cobertura.id,
+            confeito: confeito.id,
+            nome,
+            email,
+            endereco,
+            numero,
+            bairro,
+            complemento,
+            telefone,
+            data_entrega: dataEntrega,
+            preco: total
         }
-    }
 
-    function handleIsVisible() {
-        hidden = false
-        document.body.style.overflow = ''
-        scrollToComponent(violet, { offset: 0, align: 'top', duration: 1200 })
-    }
+        console.log(data)
 
-    function handleStateChange(state, operation, value = null) {
-        if (value === null)
-            resetVisible()
-
-        switch (state) {
-            case 'bandeja':
-                if (operation === 1 && value !== null)
-                    setBandeja({ ...bandeja, value: value })
-                else
-                    setBandeja({ ...bandeja, isVisible: true })
-                break
-
-            case 'massa':
-                if (operation === 1 && value !== null)
-                    setMassa({ ...massa, value: value })
-                else
-                    setMassa({ ...massa, isVisible: true })
-                break
-
-            case 'saborPrimario':
-                if (operation === 1 && value !== null)
-                    setSaborPrimario({ ...saborPrimario, value: value })
-                else
-                    setSaborPrimario({ ...saborPrimario, isVisible: true })
-                break
-
-            case 'saborSecundario':
-                if (operation === 1 && value !== null)
-                    setSaborSecundario({ ...saborSecundario, value: value })
-                else
-                    setSaborSecundario({ ...saborSecundario, isVisible: true })
-                break
-
-            case 'cobertura':
-                if (operation === 1 && value !== null)
-                    setCobertura({ ...cobertura, value: value })
-                else
-                    setCobertura({ ...cobertura, isVisible: true })
-                break
-
-            case 'confeito':
-                if (operation === 1 && value !== null)
-                    setConfeito({ ...confeito, value: value })
-                else
-                    setConfeito({ ...confeito, isVisible: true })
-                break
-
-            default:
-                break;
-        }
-    }
-
-    function resetVisible() {
-        setBandeja({ ...bandeja, isVisible: false })
-        setMassa({ ...massa, isVisible: false })
-        setSaborPrimario({ ...saborPrimario, isVisible: false })
-        setSaborSecundario({ ...saborSecundario, isVisible: false })
-        setCobertura({ ...cobertura, isVisible: false })
-        setConfeito({ ...confeito, isVisible: false })
+        const response = await api.post('/', data)
+        console.log(response.data)
     }
 
     return (
-        <div className='container'>
+        <div>
 
-            <div className='content'>
+            <Container className='main-container' fluid={true}>
 
-                <TopMenu />
+                <ModalQuemSomos isVisible={modalQuemSomos} handleClose={handleCloseModalQuemSomos} />
+                <ModalComoFunciona isVisible={modalComoFunciona} handleClose={handleCloseModalComoFunciona} />
 
-                <HomeForm
-                    contactIsVisible={handleIsVisible}
-                    handleStateChange={handleStateChange}
-                    teste={handleIsVisible}
-                    states={{ bandeja, massa, saborPrimario, saborSecundario, cobertura, confeito }} />
+                <Header handleShowModalQuemSomos={handleShowModalQuemSomos} handleShowModalComoFunciona={handleShowModalComoFunciona} />
 
-                <ContactForm />
+                <Content
+                    cardHeaderTitle='Monte seu Bolo'
+                    values={{ peso, forma, massa, sabor, cobertura, confeito, preco, totalParcial, total }}
+                    setValues={{ setPeso, setForma, setMassa, setSabor, setCobertura, setConfeito, setPreco }}
+                    display={{ displayPeso, displayForma, displayMassa, displaySabor, displayCobertura, displayConfeito }}
+                    setDisplay={{ setDisplayPeso, setDisplayForma, setDisplayMassa, setDisplaySabor, setDisplayCobertura, setDisplayConfeito }} />
 
-            </div>
+            </Container>
 
+            <Container bsPrefix='contact-container'>
+
+                <Contact
+                    values={{ nome, email, endereco, numero, bairro, complemento, telefone, dataEntrega, preco, totalParcial, total }}
+                    setValues={{ setNome, setEmail, setEndereco, setNumero, setBairro, setComplemento, setTelefone, setDataEntrega }}
+                    submit={handleSubmit} />
+
+            </Container>
         </div>
+
     )
 }
 

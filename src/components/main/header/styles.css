@@ -1,0 +1,58 @@
+.header {
+    min-height: 80px;
+    align-content: center;
+    background: black;
+    opacity: 0.8;
+}
+
+.logo {
+    margin: 0 10px 10px 10px;
+}
+
+.logo img {
+    width: 65px;
+    height: 65px;
+}
+
+.menu {
+    text-align: right;
+    margin-top: 10px
+}
+
+.menu button {
+    margin-right: 10px;
+    border: 0px;
+    border-radius: 4px;
+    background: none;
+    color: white;
+    padding: 10px;
+    font-size: 19px;
+}
+
+.menu button:hover {
+    cursor: pointer;
+    color: rgba(255, 0, 200, 0.719)
+}
+
+.menu button:focus {
+    outline: 0;
+}
+
+.menu a {
+    margin-right: 10px;
+    border: 0px;
+    border-radius: 4px;
+    background: none;
+    color: white;
+    padding: 10px;
+    font-size: 19px;
+}
+
+.menu a:hover {
+    cursor: pointer;
+    color: rgba(255, 0, 200, 0.719)
+}
+
+.menu a:focus {
+    outline: 0;
+}
