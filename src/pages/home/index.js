@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 
 import Container from 'react-bootstrap/Container'
 
-import ModalQuemSomos from '../../components/modal/modalQuemSomos'
-import ModalComoFunciona from '../../components/modal/modalComoFunciona'
-import Header from '../../components/header'
-import Content from '../../components/content'
-import Contact from '../../components/contact'
+import ModalQuemSomos from '../../components/main/modal/modalQuemSomos'
+import ModalComoFunciona from '../../components/main/modal/modalComoFunciona'
+import Header from '../../components/main/header'
+import Content from '../../components/main/content'
+import Contact from '../../components/main/contact'
 
 import api from '../../services/api'
 

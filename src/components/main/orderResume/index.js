@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa'
-import { clearString, isEmpty } from '../../helpers/mainHelper'
+import { clearString, isEmpty } from '../../../helpers/mainHelper'
 import './styles.css'
 
 export default function OrderResume(props) {

@@ -6,15 +6,15 @@ import Form from 'react-bootstrap/Form'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Slider from 'react-slick'
 
-import api from '../../services/api'
+import api from '../../../services/api'
 
-import testeImg from '../../assets/img/teste.jpg'
+import testeImg from '../../../assets/img/teste.jpg'
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './styles.css'
 
-import { isEmpty } from '../../helpers/mainHelper'
+import { isEmpty } from '../../../helpers/mainHelper'
 
 export default function MainForm(props) {
 
