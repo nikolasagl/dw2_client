@@ -7,8 +7,12 @@
     background: linear-gradient(transparent, rgb(110, 104, 110), rgb(8, 8, 8));
 }
 
+.login-container {
+    min-width: 600px;
+}
+
 .card-admin {
-    min-width: 300px !important;
+    min-height: 400px !important;
     text-align: center !important;
 }
 

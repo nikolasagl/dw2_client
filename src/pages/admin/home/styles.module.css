@@ -1,0 +1,29 @@
+.container {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh !important;
+    width: 100vw !important;
+    font-family: 'Hammersmith One', sans-serif !important;
+}
+
+.header {
+    width: 100vw !important;
+    height: 90px;
+    background: black;
+    color: white;
+}
+
+.pedidos {
+    margin: 20px;
+    padding: 40px;
+    min-width: 900px;
+    box-shadow: 0 0 10px rgb(121, 120, 120);
+    border-radius: 10px;
+}
+
+.search {
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 20px;
+}

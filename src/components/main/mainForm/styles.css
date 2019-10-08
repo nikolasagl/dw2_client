@@ -69,15 +69,20 @@ nav a.active{
 }
 
 .custom-slider {
-    margin: 10px auto -90px auto;
-    max-width: 450px !important;
+    /* margin: 10px auto -90px auto; */
+    /* max-width: 800px !important; */
     min-height: 300px !important;
 }
 
 .slider-item {
-    max-width: 160px;
-    height: 140px;
+    max-width: 140px;
+    height: 130px;
     margin: 0 auto 30px auto;
     border-radius: 50%;
     border: 1px solid black;
+}
+
+.slick-center .slider-item {
+    max-width: 180px !important;
+    height: 170px !important;
 }

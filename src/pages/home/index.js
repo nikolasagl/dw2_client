@@ -15,7 +15,7 @@ import './styles.css'
 function Home() {
 
     const [peso, setPeso] = useState(1)
-    const [forma, setForma] = useState({})
+    const [bandeja, setBandeja] = useState({})
     const [massa, setMassa] = useState({})
     const [sabor, setSabor] = useState({})
     const [cobertura, setCobertura] = useState({})
@@ -31,7 +31,7 @@ function Home() {
     const [dataEntrega, setDataEntrega] = useState('')
 
     const [preco, setPreco] = useState({
-        forma: 0,
+        bandeja: 0,
         massa: 0,
         sabor: 0,
         cobertura: 0,
@@ -45,7 +45,7 @@ function Home() {
     const [modalQuemSomos, setModalQuemSomos] = useState(false)
 
     const [displayPeso, setDisplayPeso] = useState(false)
-    const [displayForma, setDisplayForma] = useState(false)
+    const [displayBandeja, setDisplayBandeja] = useState(false)
     const [displayMassa, setDisplayMassa] = useState(false)
     const [displaySabor, setDisplaySabor] = useState(false)
     const [displayCobertura, setDisplayCobertura] = useState(false)
@@ -70,7 +70,7 @@ function Home() {
     async function handleSubmit() {
 
         const data = {
-            forma: forma.id,
+            bandeja: bandeja.id,
             massa: massa.id,
             sabor: sabor.id,
             peso: peso,
@@ -105,10 +105,10 @@ function Home() {
 
                 <Content
                     cardHeaderTitle='Monte seu Bolo'
-                    values={{ peso, forma, massa, sabor, cobertura, confeito, preco, totalParcial, total }}
-                    setValues={{ setPeso, setForma, setMassa, setSabor, setCobertura, setConfeito, setPreco }}
-                    display={{ displayPeso, displayForma, displayMassa, displaySabor, displayCobertura, displayConfeito }}
-                    setDisplay={{ setDisplayPeso, setDisplayForma, setDisplayMassa, setDisplaySabor, setDisplayCobertura, setDisplayConfeito }} />
+                    values={{ peso, bandeja, massa, sabor, cobertura, confeito, preco, totalParcial, total }}
+                    setValues={{ setPeso, setBandeja, setMassa, setSabor, setCobertura, setConfeito, setPreco }}
+                    display={{ displayPeso, displayBandeja, displayMassa, displaySabor, displayCobertura, displayConfeito }}
+                    setDisplay={{ setDisplayPeso, setDisplayBandeja, setDisplayMassa, setDisplaySabor, setDisplayCobertura, setDisplayConfeito }} />
 
             </Container>
 

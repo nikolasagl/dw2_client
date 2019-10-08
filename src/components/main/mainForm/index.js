@@ -23,9 +23,10 @@ export default function MainForm(props) {
 
     const settings = {
         dots: false,
+        centerMode: true,
         className: "center custom-slider",
         infinite: true,
-        slidesToShow: 1,
+        slidesToShow: 3,
         speed: 500
     }
 
@@ -38,6 +39,8 @@ export default function MainForm(props) {
 
     async function loadData() {
         const response = await api.get('/')
+
+        console.log(response.data)
 
         const data = response.data
 
@@ -77,21 +80,21 @@ export default function MainForm(props) {
 
                 </Tab>
 
-                <Tab className='tab' eventKey="forma" title="Forma">
+                <Tab className='tab' eventKey="bandeja" title="Bandeja">
 
                     <Form.Group controlId="mainForm.ControlSelect1">
 
-                        <Form.Label className='label'>Forma</Form.Label>
+                        <Form.Label className='label'>Bandeja</Form.Label>
 
                         <Slider {...settings}>
-                            {!isEmpty(data) ? data.formas.map((forma) => (
-                                <div key={forma.id} className='' onClick={() => {
-                                    props.setValues.setForma(forma)
-                                    props.setValues.setPreco({ ...props.values.preco, forma: forma.preco })
+                            {!isEmpty(data) ? data.bandejas.map((bandeja) => (
+                                <div key={bandeja.id} className='' onClick={() => {
+                                    props.setValues.setBandeja(bandeja)
+                                    props.setValues.setPreco({ ...props.values.preco, bandeja: bandeja.preco })
                                 }}>
                                     <img className='slider-item' src={testeImg} alt='teste' />
-                                    <p>{forma.nome}</p>
-                                    <p>Preço: R$ {forma.preco}</p>
+                                    <p>{bandeja.nome}</p>
+                                    <p>Preço: R$ {bandeja.preco}</p>
                                 </div>
                             )) : null}
                         </Slider>

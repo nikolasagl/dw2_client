@@ -12,17 +12,17 @@ export default function OrderResume(props) {
 
         <div className='order-resume'>
 
-            <div onClick={() => !isEmpty(props.values.forma) ? props.setDisplay.setDisplayForma(!props.display.displayForma) : {}} className='resume-cell'>
+            <div onClick={() => !isEmpty(props.values.bandeja) ? props.setDisplay.setDisplayBandeja(!props.display.displayBandeja) : {}} className='resume-cell'>
 
                 <div className='resume-cell-content'>
 
                     <div className='resume-cell-label'>
-                        Bandeja: {!isEmpty(props.values.forma) ? clearString(props.values.forma.nome) : ''}
+                        Bandeja: {!isEmpty(props.values.bandeja) ? clearString(props.values.bandeja.nome) : ''}
 
                         <p className='float-right'>
                             {
-                                !isEmpty(props.values.forma) ?
-                                    props.display.displayForma === false ?
+                                !isEmpty(props.values.bandeja) ?
+                                    props.display.displayBandeja === false ?
                                         <FaAngleDown className='icon' /> :
                                         <FaAngleUp className='icon' /> : null
                             }
@@ -31,8 +31,8 @@ export default function OrderResume(props) {
 
                 </div>
 
-                <span className='resume-cell-desc' style={props.display.displayForma === false || isEmpty(props.values.forma) ? { display: 'none' } : null}>
-                    {props.values.forma.descricao}
+                <span className='resume-cell-desc' style={props.display.displayBandeja === false || isEmpty(props.values.bandeja) ? { display: 'none' } : null}>
+                    {props.values.bandeja.descricao}
                 </span>
 
             </div>
