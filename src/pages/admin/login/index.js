@@ -4,23 +4,25 @@ import Container from 'react-bootstrap/Container'
 import Card from 'react-bootstrap/Card'
 import Form from 'react-bootstrap/Form'
 
-import api from '../../../services/api'
+import { login } from '../../../services/auth'
 
 import './styles.css'
 
 function Admin(props) {
 
-    const [login, setLogin] = useState('')
+    const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
     async function handleSubmit(e) {
-        // aqui api call para login
         e.preventDefault()
 
-        localStorage.setItem('@username', login)
-        sessionStorage.setItem('@password', password)
+        const logged = await login({ username, password })
 
-        props.history.push('/admin/index')
+        if (logged) {
+            props.history.push('/admin/index')
+        } else {
+            console.log('falha no login')
+        }
     }
 
     return (
@@ -42,14 +44,14 @@ function Admin(props) {
                             <Form.Row className='form-row'>
                                 <Form.Group className='col-md-12'>
                                     <Form.Label>LOGIN</Form.Label>
-                                    <input className='text-input' type='text' value={login} onChange={(e) => setLogin(e.target.value)}></input>
+                                    <input className='text-input' type='text' value={username} onChange={(e) => setUsername(e.target.value)}></input>
                                 </Form.Group>
                             </Form.Row>
 
                             <Form.Row className='form-row'>
                                 <Form.Group className='col-md-12'>
                                     <Form.Label>SENHA</Form.Label>
-                                    <input className='text-input' type='text' value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                                    <input className='text-input' type='password' value={password} onChange={(e) => setPassword(e.target.value)}></input>
                                 </Form.Group>
                             </Form.Row>
 

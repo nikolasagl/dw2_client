@@ -19,8 +19,10 @@ export default function Contact(props) {
 
                     <Form.Row className='form-row'>
                         <Form.Group className='col-md-12'>
+
                             <input className='text-input' type='text' value={props.values.nome} onChange={(e) => props.setValues.setNome(e.target.value)}></input>
                             <Form.Label className='contact-label'>NOME</Form.Label>
+
                         </Form.Group>
                     </Form.Row>
 

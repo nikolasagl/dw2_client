@@ -17,13 +17,45 @@
 .pedidos {
     margin: 20px;
     padding: 40px;
-    min-width: 900px;
+    min-width: 1200px;
     box-shadow: 0 0 10px rgb(121, 120, 120);
     border-radius: 10px;
 }
 
 .search {
-    border: 1px solid black;
+    border-radius: 10px;
+    border: 1px solid rgb(189, 189, 189);
     padding: 10px;
     margin-bottom: 20px;
+}
+
+.tableHeader {
+    background: rgba(194, 194, 194, 0.383)
+}
+
+.actionBtn {
+    padding: 5px 10px;
+    border: 1px solid black;
+    border-radius: 50%;
+    margin: 0 2px 0 2px;
+}
+
+.actionBtn:hover {
+    border: 1px solid white;
+}
+
+.showBtn {
+    background: rgb(83, 83, 255)
+}
+
+.editBtn {
+    background: rgb(255, 193, 24)
+}
+
+.deleteBtn {
+    background: rgb(255, 67, 67)
+}
+
+.searchBtn {
+    margin-top: 35px;
 }
