@@ -19,7 +19,7 @@ function Admin(props) {
         const logged = await login({ username, password })
 
         if (logged) {
-            props.history.push('/admin/index')
+            props.history.push('/admin')
         } else {
             console.log('falha no login')
         }

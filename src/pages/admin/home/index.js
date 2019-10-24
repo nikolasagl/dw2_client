@@ -4,6 +4,10 @@ import Col from 'react-bootstrap/Col'
 import Table from 'react-bootstrap/Table'
 import Form from 'react-bootstrap/Form'
 
+import ModalShow from '../../../components/main/modal/modalShow'
+import ModalEdit from '../../../components/main/modal/modalEdit'
+import ModalDelete from '../../../components/main/modal/modalDelete'
+
 import api from '../../../services/api'
 import { getToken } from '../../../services/auth'
 
@@ -14,7 +18,6 @@ import styles from './styles.module.css'
 function Admin(props) {
 
     const [pedidos, setPedidos] = useState({})
-    const [search, setSearch] = useState({})
     const [query, setQuery] = useState({
         id: '',
         nome: '',
@@ -24,9 +27,23 @@ function Admin(props) {
         status: ''
     })
 
+    const [modalEdit, setModalEdit] = useState(false)
+    const [modalShow, setModalShow] = useState(false)
+    const [modalDelete, setModalDelete] = useState(false)
+    const [pedidoId, setPedidoId] = useState(0)
+
     useEffect(() => {
         fetchData()
     }, [])
+
+    useEffect(() => {
+        Object.keys(query).map(element => {
+            if (element !== '') {
+                return
+            }
+        })
+        fetchData()
+    }, [query])
 
     async function fetchData() {
         const token = getToken()
@@ -36,42 +53,56 @@ function Admin(props) {
         const { data } = response.data
 
         setPedidos(data)
-        setSearch(data)
     }
 
-    function searchEngine(e) {
+    async function searchEngine(e) {
         e.preventDefault()
 
-        console.log(query)
+        const response = await api.post('/admin/search', query)
+
+        setPedidos(response.data)
     }
 
     function setQueryId(value) {
-        setQuery(query => ({...query, id: value}))
+        setQuery(query => ({ ...query, id: value }))
     }
 
     function setQueryNome(value) {
-        setQuery(query => ({...query, nome: value}))
+        setQuery(query => ({ ...query, nome: value }))
     }
 
     function setQueryPreco(value) {
-        setQuery(query => ({...query, preco: value}))        
+        setQuery(query => ({ ...query, preco: value }))
     }
 
     function setQueryDataPedido(value) {
-        setQuery(query => ({...query, data_pedido: value}))        
+        setQuery(query => ({ ...query, data_pedido: value }))
     }
 
     function setQueryDataEntrega(value) {
-        setQuery(query => ({...query, data_entrega: value}))        
+        setQuery(query => ({ ...query, data_entrega: value }))
     }
 
     function setQueryStatus(value) {
-        setQuery(query => ({...query, status: value}))        
+        setQuery(query => ({ ...query, status: value }))
     }
+
+    const handleCloseModalShow = () => setModalShow(false)
+    const handleShowModalShow = () => setModalShow(true)
+
+    const handleCloseModalEdit = () => setModalEdit(false)
+    const handleShowModalEdit = () => setModalEdit(true)
+
+    const handleCloseModalDelete = () => setModalDelete(false)
+    const handleShowModalDelete = () => setModalDelete(true)
 
     return (
 
         <div className={styles.container}>
+
+            <ModalShow isVisible={modalShow} pedido={pedidoId} handleClose={handleCloseModalShow} />
+            <ModalEdit isVisible={modalEdit} pedido={pedidoId} handleClose={handleCloseModalEdit} />
+            <ModalDelete isVisible={modalDelete} pedido={pedidoId} handleClose={handleCloseModalDelete} />
 
             <div>
                 <Col className={styles.header}>
@@ -88,33 +119,33 @@ function Admin(props) {
 
                             <Form.Row>
 
-                                <Form.Group className='col-md-3'>
+                                <div className='col-md-3'>
                                     <Form.Label>Id</Form.Label>
                                     <input type='text' className='form-control' value={query.id} onChange={(e) => setQueryId(e.target.value)}></input>
-                                </Form.Group>
+                                </div>
 
-                                <Form.Group className='col-md-7'>
+                                <div className='col-md-7'>
                                     <Form.Label>Nome</Form.Label>
                                     <input type='text' className='form-control' value={query.nome} onChange={(e) => setQueryNome(e.target.value)}></input>
-                                </Form.Group>
+                                </div>
 
-                                <Form.Group className='col-md-2'>
+                                <div className='col-md-2'>
                                     <Form.Label>Preço</Form.Label>
                                     <input type='text' className='form-control' value={query.preco} onChange={(e) => setQueryPreco(e.target.value)}></input>
-                                </Form.Group>
+                                </div>
 
                             </Form.Row>
 
                             <Form.Row>
-                                
+
                                 <Form.Group className='col-md-4'>
                                     <Form.Label>Data Pedido</Form.Label>
-                                    <input type='text' className='form-control' value={query.data_pedido} onChange={(e) => setQueryDataPedido(e.target.value)}></input>
+                                    <input type='date' placeholder="MM/DD/AAAA" className='form-control' value={query.data_pedido} onChange={(e) => setQueryDataPedido(e.target.value)}></input>
                                 </Form.Group>
 
                                 <Form.Group className='col-md-4'>
                                     <Form.Label>Data Entrega</Form.Label>
-                                    <input type='text' className='form-control' value={query.data_entrega} onChange={(e) => setQueryDataEntrega(e.target.value)}></input>
+                                    <input type='date' className='form-control' value={query.data_entrega} onChange={(e) => setQueryDataEntrega(e.target.value)}></input>
                                 </Form.Group>
 
                                 <Form.Group className='col-md-3'>
@@ -148,24 +179,32 @@ function Admin(props) {
 
                         <tbody>
 
-                            { search.length > 0 && Object.keys(search).map(function (key, index) {
+                            {pedidos.length > 0 && Object.keys(pedidos).map(function (key, index) {
                                 return (
                                     <tr key={key}>
-                                        <td>{search[key].id}</td>
-                                        <td>{search[key].pessoa.nome}</td>
-                                        <td>{search[key].data_pedido}</td>
-                                        <td>{search[key].data_entrega}</td>
-                                        <td>{search[key].preco}</td>
-                                        <td>{search[key].status.nome}</td>
+                                        <td>{pedidos[key].id}</td>
+                                        <td>{pedidos[key].pessoa.nome}</td>
+                                        <td>{pedidos[key].data_pedido}</td>
+                                        <td>{pedidos[key].data_entrega}</td>
+                                        <td>{pedidos[key].preco}</td>
+                                        <td>{pedidos[key].status.nome}</td>
                                         <td>
-                                            <button className={`${styles.actionBtn} ${styles.showBtn}`}><FaSistrix color='white' /></button>
-                                            <button className={`${styles.actionBtn} ${styles.editBtn}`}><FaEdit color='white' /></button>
-                                            <button className={`${styles.actionBtn} ${styles.deleteBtn}`}><FaRegWindowClose color='white' /></button>
+                                            <button onClick={() => {handleShowModalShow(); setPedidoId(pedidos[key].id)}} className={`${styles.actionBtn} ${styles.showBtn}`}>
+                                                <FaSistrix color='white' />
+                                            </button>
+
+                                            <button onClick={() => {handleShowModalEdit(); setPedidoId(pedidos[key].id)}} className={`${styles.actionBtn} ${styles.editBtn}`}>
+                                                <FaEdit color='white' />
+                                            </button>
+
+                                            <button onClick={() => {handleShowModalDelete(); setPedidoId(pedidos[key].id)}} className={`${styles.actionBtn} ${styles.deleteBtn}`}>
+                                                <FaRegWindowClose color='white' />
+                                            </button>
                                         </td>
                                     </tr>
                                 )
-                            }) }
-                    
+                            })}
+
                         </tbody>
 
                     </Table>

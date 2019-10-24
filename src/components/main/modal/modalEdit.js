@@ -2,16 +2,15 @@ import React from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 
-export default function ComoFuncionaModal(props) {
+export default function ModalEdit(props) {
 
     return (
+
         <Modal show={props.isVisible} onHide={props.handleClose}>
 
-            <Modal.Header closeButton>
-                <Modal.Title>Modal Como Funciona</Modal.Title>
-            </Modal.Header>
+            <Modal.Header>Modal Edit</Modal.Header>
 
-            <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+            <Modal.Body></Modal.Body>
 
             <Modal.Footer>
                 <Button variant="secondary" onClick={props.handleClose}>
@@ -20,5 +19,6 @@ export default function ComoFuncionaModal(props) {
             </Modal.Footer>
 
         </Modal>
+
     )
 }
