@@ -9,8 +9,6 @@ import AdminHome from './pages/admin/home/'
 import { isAuthenticated } from './services/auth'
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-    var status = true
-
 
     return (
         <Route
