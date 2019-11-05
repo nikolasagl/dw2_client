@@ -14,6 +14,7 @@ import { getToken } from '../../../services/auth'
 import { FaSistrix, FaEdit, FaRegWindowClose, FaSearchengin } from 'react-icons/fa'
 
 import styles from './styles.module.css'
+import './modalshow.css'
 
 function Admin(props) {
 
@@ -30,7 +31,9 @@ function Admin(props) {
     const [modalEdit, setModalEdit] = useState(false)
     const [modalShow, setModalShow] = useState(false)
     const [modalDelete, setModalDelete] = useState(false)
-    const [pedidoId, setPedidoId] = useState(0)
+    const [pedidoShowId, setPedidoShowId] = useState(0)
+    const [pedidoEditId, setPedidoEditId] = useState(0)
+    const [pedidoDeleteId, setPedidoDeleteId] = useState(0)
 
     useEffect(() => {
         fetchData()
@@ -100,9 +103,9 @@ function Admin(props) {
 
         <div className={styles.container}>
 
-            <ModalShow isVisible={modalShow} pedido={pedidoId} handleClose={handleCloseModalShow} />
-            <ModalEdit isVisible={modalEdit} pedido={pedidoId} handleClose={handleCloseModalEdit} />
-            <ModalDelete isVisible={modalDelete} pedido={pedidoId} handleClose={handleCloseModalDelete} />
+            <ModalShow isVisible={modalShow} pedido={pedidoShowId} handleClose={handleCloseModalShow} />
+            <ModalEdit isVisible={modalEdit} pedido={pedidoEditId} handleClose={handleCloseModalEdit} />
+            <ModalDelete isVisible={modalDelete} pedido={pedidoDeleteId} handleClose={handleCloseModalDelete} />
 
             <div>
                 <Col className={styles.header}>
@@ -189,15 +192,15 @@ function Admin(props) {
                                         <td>{pedidos[key].preco}</td>
                                         <td>{pedidos[key].status.nome}</td>
                                         <td>
-                                            <button onClick={() => {handleShowModalShow(); setPedidoId(pedidos[key].id)}} className={`${styles.actionBtn} ${styles.showBtn}`}>
+                                            <button onClick={() => {handleShowModalShow(); setPedidoShowId(pedidos[key].id)}} className={`${styles.actionBtn} ${styles.showBtn}`}>
                                                 <FaSistrix color='white' />
                                             </button>
 
-                                            <button onClick={() => {handleShowModalEdit(); setPedidoId(pedidos[key].id)}} className={`${styles.actionBtn} ${styles.editBtn}`}>
+                                            <button onClick={() => {handleShowModalEdit(); setPedidoEditId(pedidos[key].id)}} className={`${styles.actionBtn} ${styles.editBtn}`}>
                                                 <FaEdit color='white' />
                                             </button>
 
-                                            <button onClick={() => {handleShowModalDelete(); setPedidoId(pedidos[key].id)}} className={`${styles.actionBtn} ${styles.deleteBtn}`}>
+                                            <button onClick={() => {handleShowModalDelete(); setPedidoDeleteId(pedidos[key].id)}} className={`${styles.actionBtn} ${styles.deleteBtn}`}>
                                                 <FaRegWindowClose color='white' />
                                             </button>
                                         </td>

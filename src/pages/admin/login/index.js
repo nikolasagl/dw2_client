@@ -10,13 +10,13 @@ import './styles.css'
 
 function Admin(props) {
 
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('')
+    const [senha, setSenha] = useState('')
 
     async function handleSubmit(e) {
         e.preventDefault()
 
-        const logged = await login({ username, password })
+        const logged = await login({ email, senha })
 
         if (logged) {
             props.history.push('/admin')
@@ -49,15 +49,15 @@ function Admin(props) {
 
                             <Form.Row className='form-row'>
                                 <Form.Group className='col-md-12'>
-                                    <Form.Label className='admin-label'>LOGIN</Form.Label>
-                                    <input className='form-control' type='text' value={username} onChange={(e) => setUsername(e.target.value)}></input>
+                                    <Form.Label className='admin-label'>Email</Form.Label>
+                                    <input className='form-control' type='text' value={email} onChange={(e) => setEmail(e.target.value)}></input>
                                 </Form.Group>
                             </Form.Row>
 
                             <Form.Row className='form-row'>
                                 <Form.Group className='col-md-12'>
-                                    <Form.Label className='admin-label'>SENHA</Form.Label>
-                                    <input className='form-control' type='password' value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                                    <Form.Label className='admin-label'>Senha</Form.Label>
+                                    <input className='form-control' type='password' value={senha} onChange={(e) => setSenha(e.target.value)}></input>
                                 </Form.Group>
                             </Form.Row>
 

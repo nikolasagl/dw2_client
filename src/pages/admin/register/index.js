@@ -10,20 +10,20 @@ import { login } from '../../../services/auth'
 function Admin(props) {
 
     const [email, setEmail] = useState('')
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
+    const [nome, setNome] = useState('')
+    const [senha, setSenha] = useState('')
 
     async function handleSubmit(e) {
         e.preventDefault()
 
-        const response = await api.post('/admin/register', { email, username, password })     
+        const response = await api.post('/admin/register', { email, nome, senha })     
         
         const data = response.data
 
         console.log(data)
 
         if (data.status) {
-            const logged = await login({ username: data.username, password })
+            const logged = await login({ email: data.email, senha })
 
             if (logged) {
                 props.history.push('/admin')
@@ -60,15 +60,15 @@ function Admin(props) {
 
                             <Form.Row className='form-row'>
                                 <Form.Group className='col-md-12'>
-                                    <Form.Label className='admin-label'>Login</Form.Label>
-                                    <input className='form-control' type='text' value={username} onChange={(e) => setUsername(e.target.value)}></input>
+                                    <Form.Label className='admin-label'>Nome</Form.Label>
+                                    <input className='form-control' type='text' value={nome} onChange={(e) => setNome(e.target.value)}></input>
                                 </Form.Group>
                             </Form.Row>
 
                             <Form.Row className='form-row'>
                                 <Form.Group className='col-md-12'>
                                     <Form.Label className='admin-label'>Senha</Form.Label>
-                                    <input className='form-control' type='password' value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                                    <input className='form-control' type='password' value={senha} onChange={(e) => setSenha(e.target.value)}></input>
                                 </Form.Group>
                             </Form.Row>
 

@@ -34,6 +34,16 @@ export default function ModalShow(props) {
             <Modal.Body>
 
                 <div>  
+                    
+                    <div>
+                        <h5>Informações Gerais</h5>
+                        
+                        <div className='show-header'>
+                            <p><b>Encomendado por:</b> {data.pessoa && data.pessoa.nome}</p>
+                            <p><b>Encomendado em: </b> {data.pessoa && data.data_pedido}</p>
+                            <p><b>Encomendado para: </b> {data.pessoa && data.data_entrega}</p>
+                        </div>
+                    </div>
 
                     {/* <p>{data.}</p>
                     <p>{data.}</p>
