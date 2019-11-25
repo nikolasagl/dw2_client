@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { BrowserRouter, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 
 import Home from './pages/home/'
 import Admin from './pages/admin/login/'
@@ -28,11 +28,13 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 const Routes = () => {
     return (
         <BrowserRouter>
-            <Route exact path='/' component={Home} />
-            <Route exact path='/admin/login' component={Admin} />
-            <Route exact path='/admin/register' component={AdminRegister} />
-            <Route exact path='/admin/logout' render={(props) => { logout(); props.history.push('/admin/login') }} />
-            <PrivateRoute exact path='/admin' component={AdminHome} />
+            <Switch>
+                <Route exact path='/' component={Home} />
+                <Route exact path='/admin/login' component={Admin} />
+                <Route exact path='/admin/register' component={AdminRegister} />
+                <Route exact path='/admin/logout' render={(props) => { logout(); props.history.push('/admin/login') }} />
+                <PrivateRoute exact path='/admin' component={AdminHome} />
+            </Switch>
         </BrowserRouter>
     )
 }
