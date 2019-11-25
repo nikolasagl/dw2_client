@@ -1,0 +1,14 @@
+.modalshow-showheader {
+    display: flex;
+    flex-direction: column;
+}
+
+.modalshow-resume {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.modalshow-body {
+    padding: 20px;
+}

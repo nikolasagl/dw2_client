@@ -20,8 +20,6 @@ function Admin(props) {
         
         const data = response.data
 
-        console.log(data)
-
         if (data.status) {
             const logged = await login({ email: data.email, senha })
 
